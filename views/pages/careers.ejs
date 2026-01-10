@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Join the Vendi team - Careers and job opportunities"
+    />
+    <title>Vendi - Careers</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="/style.css" />
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --primary-color: #667eea;
+        --text-dark: #2d3748;
+        --text-muted: #718096;
+        --border-radius: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        background: #f7fafc;
+        font-family: "Inter", sans-serif;
+        color: var(--text-dark);
+      }
+
+      .navbar {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        padding: 1rem 0;
+      }
+
+      .navbar-brand {
+        font-weight: 800;
+        font-size: 1.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: var(--text-dark) !important;
+        margin: 0 0.5rem;
+        transition: var(--transition);
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .btn-primary {
+        background: var(--primary-gradient);
+        border: none;
+        border-radius: 25px;
+        padding: 0.6rem 1.8rem;
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      .hero-section {
+        background: var(--primary-gradient);
+        padding: 100px 0;
+        color: white;
+        text-align: center;
+      }
+
+      .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-section p {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        max-width: 700px;
+        margin: 0 auto 2rem;
+      }
+
+      .values-section {
+        padding: 5rem 0;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+
+      .section-subtitle {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 1.1rem;
+        margin-bottom: 4rem;
+      }
+
+      .value-card {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 2.5rem;
+        text-align: center;
+        transition: var(--transition);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        height: 100%;
+      }
+
+      .value-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .value-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--primary-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        color: white;
+        font-size: 2rem;
+      }
+
+      .value-card h4 {
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .value-card p {
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      .jobs-section {
+        background: white;
+        padding: 5rem 0;
+      }
+
+      .job-card {
+        background: #f7fafc;
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        transition: var(--transition);
+        border: 2px solid transparent;
+      }
+
+      .job-card:hover {
+        border-color: var(--primary-color);
+        background: white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .job-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
+
+      .job-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .job-department {
+        display: inline-block;
+        background: var(--primary-gradient);
+        color: white;
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .job-meta {
+        display: flex;
+        gap: 2rem;
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+      }
+
+      .job-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .job-description {
+        color: var(--text-muted);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+
+      .btn-apply {
+        background: var(--primary-gradient);
+        color: white;
+        border: none;
+        padding: 0.8rem 2rem;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .btn-apply:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .perks-section {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      }
+
+      .perk-item {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .perk-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        background: var(--primary-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+      }
+
+      .perk-content h5 {
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .perk-content p {
+        color: var(--text-muted);
+        margin: 0;
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--primary-gradient);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        border: none;
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .back-to-top:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        color: white;
+      }
+
+      @media (max-width: 768px) {
+        .hero-section h1 {
+          font-size: 2.5rem;
+        }
+        .job-header {
+          flex-direction: column;
+        }
+        .job-meta {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="/images/vendi-logo.png" alt="" width="80px" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/saved-items" class="nav-link">
+                <i class="far fa-heart me-1"></i>Saved
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/login" class="nav-link">
+                <i class="far fa-user me-1"></i>Login
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/post-ad" class="btn btn-primary ms-2">
+                <i class="fas fa-plus me-2"></i>Post Ad
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container">
+        <h1>Join Our Team</h1>
+        <p>
+          Help us build Nigeria's leading marketplace. We're looking for
+          talented, passionate people to join our growing team.
+        </p>
+        <a
+          href="#openings"
+          class="btn btn-lg"
+          style="
+            background: white;
+            color: var(--primary-color);
+            border-radius: 25px;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            text-decoration: none;
+          "
+        >
+          View Open Positions
+        </a>
+      </div>
+    </section>
+
+    <!-- VALUES SECTION -->
+    <section class="values-section">
+      <div class="container">
+        <h2 class="section-title">Why Work at Vendi?</h2>
+        <p class="section-subtitle">
+          We're building something special, and we want you to be part of it
+        </p>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <h4>Innovation First</h4>
+              <p>
+                Work on cutting-edge technology and shape the future of
+                e-commerce in Nigeria
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h4>Amazing Team</h4>
+              <p>
+                Collaborate with talented, passionate people who love what they
+                do
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h4>Growth Opportunities</h4>
+              <p>
+                Advance your career with continuous learning and development
+                programs
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERKS SECTION -->
+    <section class="perks-section">
+      <div class="container">
+        <h2 class="section-title">Benefits & Perks</h2>
+        <p class="section-subtitle">We take care of our team</p>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="perk-item">
+              <div class="perk-icon">
+                <i class="fas fa-heartbeat"></i>
+              </div>
+              <div class="perk-content">
+                <h5>Health Insurance</h5>
+                <p>Comprehensive health coverage for you and your family</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="perk-item">
+              <div class="perk-icon">
+                <i class="fas fa-home"></i>
+              </div>
+              <div class="perk-content">
+                <h5>Remote Work</h5>
+                <p>Flexible work arrangements and remote work options</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="perk-item">
+              <div class="perk-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="perk-content">
+                <h5>Learning Budget</h5>
+                <p>
+                  Annual budget for courses, conferences, and professional
+                  development
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="perk-item">
+              <div class="perk-icon">
+                <i class="fas fa-umbrella-beach"></i>
+              </div>
+              <div class="perk-content">
+                <h5>Paid Time Off</h5>
+                <p>Generous vacation days plus public holidays</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="perk-item">
+              <div class="perk-icon">
+                <i class="fas fa-laptop"></i>
+              </div>
+              <div class="perk-content">
+                <h5>Latest Equipment</h5>
+                <p>MacBook Pro or high-end PC, plus all the tools you need</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="perk-item">
+              <div class="perk-icon">
+                <i class="fas fa-pizza-slice"></i>
+              </div>
+              <div class="perk-content">
+                <h5>Team Events</h5>
+                <p>Regular team outings, lunches, and social activities</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPEN POSITIONS -->
+    <section class="jobs-section" id="openings">
+      <div class="container">
+        <h2 class="section-title">Open Positions</h2>
+        <p class="section-subtitle">Find your next opportunity</p>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <!-- JOB 1 -->
+            <div class="job-card">
+              <div class="job-header">
+                <div>
+                  <h3 class="job-title">Senior Full-Stack Developer</h3>
+                  <span class="job-department">Engineering</span>
+                </div>
+              </div>
+              <div class="job-meta">
+                <span><i class="fas fa-map-marker-alt"></i>Lagos, Nigeria</span>
+                <span><i class="fas fa-briefcase"></i>Full-time</span>
+                <span><i class="far fa-clock"></i>Posted 3 days ago</span>
+              </div>
+              <p class="job-description">
+                We're looking for an experienced full-stack developer to help
+                build and scale our platform. You'll work with React, Node.js,
+                and MongoDB to create amazing user experiences.
+              </p>
+              <button class="btn-apply">Apply Now</button>
+            </div>
+
+            <!-- JOB 2 -->
+            <div class="job-card">
+              <div class="job-header">
+                <div>
+                  <h3 class="job-title">Product Designer (UI/UX)</h3>
+                  <span
+                    class="job-department"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        #f093fb 0%,
+                        #f5576c 100%
+                      );
+                    "
+                    >Design</span
+                  >
+                </div>
+              </div>
+              <div class="job-meta">
+                <span><i class="fas fa-map-marker-alt"></i>Lagos, Nigeria</span>
+                <span><i class="fas fa-briefcase"></i>Full-time</span>
+                <span><i class="far fa-clock"></i>Posted 1 week ago</span>
+              </div>
+              <p class="job-description">
+                Join our design team to create beautiful, intuitive interfaces
+                that delight our users. Experience with Figma and user research
+                is essential.
+              </p>
+              <button class="btn-apply">Apply Now</button>
+            </div>
+
+            <!-- JOB 3 -->
+            <div class="job-card">
+              <div class="job-header">
+                <div>
+                  <h3 class="job-title">Customer Success Manager</h3>
+                  <span
+                    class="job-department"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        #48bb78 0%,
+                        #38a169 100%
+                      );
+                    "
+                    >Customer Support</span
+                  >
+                </div>
+              </div>
+              <div class="job-meta">
+                <span><i class="fas fa-map-marker-alt"></i>Lagos, Nigeria</span>
+                <span><i class="fas fa-briefcase"></i>Full-time</span>
+                <span><i class="far fa-clock"></i>Posted 2 weeks ago</span>
+              </div>
+              <p class="job-description">
+                Help our users succeed by providing exceptional support and
+                building strong relationships. You'll be the voice of our
+                customers within the company.
+              </p>
+              <button class="btn-apply">Apply Now</button>
+            </div>
+
+            <!-- JOB 4 -->
+            <div class="job-card">
+              <div class="job-header">
+                <div>
+                  <h3 class="job-title">Marketing Manager</h3>
+                  <span
+                    class="job-department"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        #fa709a 0%,
+                        #fee140 100%
+                      );
+                    "
+                    >Marketing</span
+                  >
+                </div>
+              </div>
+              <div class="job-meta">
+                <span><i class="fas fa-map-marker-alt"></i>Lagos, Nigeria</span>
+                <span><i class="fas fa-briefcase"></i>Full-time</span>
+                <span><i class="far fa-clock"></i>Posted 5 days ago</span>
+              </div>
+              <p class="job-description">
+                Lead our marketing efforts to grow Vendi's brand and user base.
+                Experience with digital marketing, content strategy, and
+                analytics required.
+              </p>
+              <button class="btn-apply">Apply Now</button>
+            </div>
+
+            <!-- JOB 5 -->
+            <div class="job-card">
+              <div class="job-header">
+                <div>
+                  <h3 class="job-title">Data Analyst</h3>
+                  <span
+                    class="job-department"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        #4facfe 0%,
+                        #00f2fe 100%
+                      );
+                    "
+                    >Data</span
+                  >
+                </div>
+              </div>
+              <div class="job-meta">
+                <span><i class="fas fa-map-marker-alt"></i>Remote</span>
+                <span><i class="fas fa-briefcase"></i>Full-time</span>
+                <span><i class="far fa-clock"></i>Posted 1 week ago</span>
+              </div>
+              <p class="job-description">
+                Turn data into insights that drive business decisions. You'll
+                work with SQL, Python, and visualization tools to analyze user
+                behavior and market trends.
+              </p>
+              <button class="btn-apply">Apply Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <h5 class="footer-title">
+              <img src="/images/vendi-logo.png" alt="" width="80px" />
+            </h5>
+            <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.6">
+              Your trusted marketplace for buying and selling anything. Join
+              thousands of happy users today.
+            </p>
+            <div class="social-links mt-3">
+              <a href="#" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/careers">Careers</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Categories</h5>
+            <ul class="footer-links">
+              <li><a href="/#categories">Vehicles</a></li>
+              <li><a href="/#categories">Electronics</a></li>
+              <li><a href="/#categories">Real Estate</a></li>
+              <li><a href="/#categories">Fashion</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Support</h5>
+            <ul class="footer-links">
+              <li><a href="/support/help-center">Help Center</a></li>
+              <li><a href="/support/safety-tips">Safety Tips</a></li>
+              <li><a href="/legal/terms">Terms of Service</a></li>
+              <li><a href="/legal/privacy">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Account</h5>
+            <ul class="footer-links">
+              <li><a href="/auth/login">Login</a></li>
+              <li><a href="/auth/register">Register</a></li>
+              <li><a href="/user/my-ads">My Ads</a></li>
+              <li><a href="/user/saved-items">Saved Items</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="mb-0">
+            © 2025 Vendi. All rights reserved. Made with
+            <i class="fas fa-heart" style="color: #f56565"></i> in Nigeria
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button class="back-to-top" id="backToTop" title="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Back to Top Button
+      const backToTopBtn = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopBtn.classList.add("active");
+        } else {
+          backToTopBtn.classList.remove("active");
+        }
+      });
+
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    </script>
+  </body>
+</html>

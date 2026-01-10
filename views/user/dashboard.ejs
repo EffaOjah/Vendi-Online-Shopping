@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="User Dashboard - Vendi" />
+    <title>Vendi - My Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --primary-color: #667eea;
+        --text-dark: #2d3748;
+        --text-muted: #718096;
+        --border-radius: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --sidebar-width: 280px;
+      }
+
+      body {
+        background: #f7fafc;
+        font-family: "Inter", sans-serif;
+        color: var(--text-dark);
+        min-height: 100vh;
+        display: flex;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: var(--sidebar-width);
+        background: white;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        border-right: 1px solid #e2e8f0;
+        display: flex;
+        flex-direction: column;
+        z-index: 1000;
+        transition: var(--transition);
+      }
+
+      .sidebar-header {
+        padding: 1.5rem 2rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .brand-logo {
+        font-weight: 800;
+        font-size: 1.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-decoration: none;
+      }
+
+      .sidebar-menu {
+        padding: 1.5rem 1rem;
+        flex-grow: 1;
+        overflow-y: auto;
+      }
+
+      .menu-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-muted);
+        margin: 0 1rem 0.8rem;
+        font-weight: 600;
+      }
+
+      .nav-item {
+        margin-bottom: 0.5rem;
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        padding: 0.8rem 1rem;
+        color: var(--text-dark);
+        border-radius: 12px;
+        font-weight: 500;
+        transition: var(--transition);
+        text-decoration: none;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        background: #ebf4ff;
+        color: var(--primary-color);
+      }
+
+      .nav-link i {
+        width: 24px;
+        margin-right: 0.8rem;
+        font-size: 1.1rem;
+      }
+
+      .sidebar-footer {
+        padding: 1.5rem;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-left: var(--sidebar-width);
+        flex-grow: 1;
+        padding: 2rem;
+        transition: var(--transition);
+      }
+
+      .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .page-title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin: 0;
+      }
+
+      .welcome-text {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+      }
+
+      /* Stats Cards */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .stat-card {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        transition: var(--transition);
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+      }
+
+      .stat-info h3 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin: 0;
+        line-height: 1.2;
+      }
+
+      .stat-label {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      /* Dashboard Content */
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .content-card {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        height: 100%;
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .card-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .activity-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .activity-item {
+        display: flex;
+        gap: 1rem;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #f7fafc;
+      }
+
+      .activity-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .activity-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #ebf4ff;
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .activity-content h6 {
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+        font-size: 0.95rem;
+      }
+
+      .activity-content p {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin: 0;
+      }
+
+      .activity-time {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
+
+      .profile-completion {
+        text-align: center;
+        padding: 1rem;
+        background: linear-gradient(135deg, #ebf4ff 0%, #fff 100%);
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+      }
+
+      .progress {
+        height: 8px;
+        border-radius: 4px;
+        margin: 1rem 0;
+      }
+
+      .progress-bar {
+        background: var(--primary-gradient);
+      }
+
+      @media (max-width: 992px) {
+        .sidebar {
+          transform: translateX(-100%);
+        }
+        .sidebar.active {
+          transform: translateX(0);
+        }
+        .main-content {
+          margin-left: 0;
+        }
+        .dashboard-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="/" class="brand-logo">
+          <img src="/images/vendi-logo.png" alt="Vendi" width="100" />
+        </a>
+      </div>
+
+      <div class="sidebar-menu">
+        <div class="menu-label">Menu</div>
+        <div class="nav-item">
+          <a href="/user/dashboard" class="nav-link active">
+            <i class="fas fa-th-large"></i>Dashboard
+          </a>
+        </div>
+        <div class="nav-item">
+          <a href="/user/my-ads" class="nav-link">
+            <i class="fas fa-ad"></i>My Ads
+          </a>
+        </div>
+        <div class="nav-item">
+          <a href="/user/chat" class="nav-link">
+            <i class="fas fa-comments"></i>Messages
+            <span class="badge bg-danger rounded-pill ms-auto">2</span>
+          </a>
+        </div>
+        <div class="nav-item">
+          <a href="/user/saved-items" class="nav-link">
+            <i class="fas fa-heart"></i>Saved Items
+          </a>
+        </div>
+
+        <div class="menu-label mt-4">Account</div>
+        <div class="nav-item">
+          <a href="/user/profile" class="nav-link">
+            <i class="fas fa-user"></i>Profile
+          </a>
+        </div>
+        <div class="nav-item">
+          <a href="/user/settings" class="nav-link">
+            <i class="fas fa-cog"></i>Settings
+          </a>
+        </div>
+        <div class="nav-item">
+          <a href="/auth/login" class="nav-link text-danger">
+            <i class="fas fa-sign-out-alt"></i>Logout
+          </a>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="d-grid">
+          <a href="/user/post-ad" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Post New Ad
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Mobile Toggle -->
+      <button
+        class="btn btn-light d-lg-none mb-3"
+        onclick="document.getElementById('sidebar').classList.toggle('active')"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="top-bar">
+        <div>
+          <h1 class="page-title">Welcome back, John! 👋</h1>
+          <p class="welcome-text mb-0">
+            Here's what's happening with your account today.
+          </p>
+        </div>
+        <div class="d-none d-md-block">
+          <img
+            src="https://ui-avatars.com/api/?name=John+Doe&background=random"
+            class="user-avatar"
+            alt="User"
+          />
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div
+            class="stat-icon"
+            style="
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            "
+          >
+            <i class="fas fa-ad"></i>
+          </div>
+          <div class="stat-info">
+            <h3>12</h3>
+            <div class="stat-label">Active Ads</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div
+            class="stat-icon"
+            style="
+              background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%);
+            "
+          >
+            <i class="fas fa-eye"></i>
+          </div>
+          <div class="stat-info">
+            <h3>1.2k</h3>
+            <div class="stat-label">Total Views</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div
+            class="stat-icon"
+            style="
+              background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            "
+          >
+            <i class="fas fa-comment-alt"></i>
+          </div>
+          <div class="stat-info">
+            <h3>5</h3>
+            <div class="stat-label">Unread Messages</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div
+            class="stat-icon"
+            style="
+              background: linear-gradient(135deg, #f56565 0%, #c53030 100%);
+            "
+          >
+            <i class="fas fa-heart"></i>
+          </div>
+          <div class="stat-info">
+            <h3>8</h3>
+            <div class="stat-label">Saved Items</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Content -->
+      <div class="dashboard-grid">
+        <!-- Recent Activity -->
+        <div class="content-card">
+          <div class="card-header">
+            <h5 class="card-title">Recent Activity</h5>
+          </div>
+          <ul class="activity-list">
+            <li class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-comment"></i>
+              </div>
+              <div class="activity-content">
+                <div class="d-flex justify-content-between">
+                  <h6>New message from Adebayo</h6>
+                  <span class="activity-time">2 mins ago</span>
+                </div>
+                <p>Is the iPhone 15 still available?</p>
+              </div>
+            </li>
+            <li class="activity-item">
+              <div
+                class="activity-icon"
+                style="background: #c6f6d5; color: #22543d"
+              >
+                <i class="fas fa-check"></i>
+              </div>
+              <div class="activity-content">
+                <div class="d-flex justify-content-between">
+                  <h6>Ad Approved</h6>
+                  <span class="activity-time">1 hour ago</span>
+                </div>
+                <p>Your listing "MacBook Pro M3" is now live.</p>
+              </div>
+            </li>
+            <li class="activity-item">
+              <div
+                class="activity-icon"
+                style="background: #fed7d7; color: #742a2a"
+              >
+                <i class="fas fa-heart"></i>
+              </div>
+              <div class="activity-content">
+                <div class="d-flex justify-content-between">
+                  <h6>Price Drop Alert</h6>
+                  <span class="activity-time">3 hours ago</span>
+                </div>
+                <p>An item in your wishlist is now 10% cheaper.</p>
+              </div>
+            </li>
+            <li class="activity-item">
+              <div
+                class="activity-icon"
+                style="background: #feebc8; color: #744210"
+              >
+                <i class="fas fa-eye"></i>
+              </div>
+              <div class="activity-content">
+                <div class="d-flex justify-content-between">
+                  <h6>High Interest</h6>
+                  <span class="activity-time">Yesterday</span>
+                </div>
+                <p>Your ad "Samsung S24" reached 100 views!</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Sidebar Widgets -->
+        <div class="d-flex flex-column gap-3">
+          <!-- Profile Completion -->
+          <div class="content-card">
+            <h5 class="card-title mb-3">Profile Status</h5>
+            <div class="profile-completion">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <span class="fw-bold">80% Complete</span>
+                <i class="fas fa-check-circle text-success"></i>
+              </div>
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  style="width: 80%"
+                ></div>
+              </div>
+              <p class="small text-muted mb-3">
+                Add your phone number to reach 100%
+              </p>
+              <button class="btn btn-sm btn-outline-primary w-100">
+                Complete Profile
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Tips -->
+          <div
+            class="content-card"
+            style="
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              color: white;
+            "
+          >
+            <h5 class="card-title mb-3">Pro Tip 💡</h5>
+            <p class="mb-3" style="opacity: 0.9">
+              Ads with 3+ photos get 5x more views. Add more photos to your
+              listings today!
+            </p>
+            <a
+              href="/user/my-ads"
+              class="btn btn-sm btn-light text-primary fw-bold w-100"
+              >Manage Ads</a
+            >
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

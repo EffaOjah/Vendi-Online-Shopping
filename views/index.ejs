@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Buy and sell anything - from electronics to real estate. Your trusted marketplace for quality products."
+    />
+    <title>Vendi - Buy & Sell Anything</title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- BOOTSTRAP -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ========== GLOBAL STYLES ========== */
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --dark-gradient: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+        --primary-color: #667eea;
+        --secondary-color: #764ba2;
+        --text-dark: #2d3748;
+        --text-muted: #718096;
+        --border-radius: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #f7fafc;
+        font-family: "Inter", sans-serif;
+        color: var(--text-dark);
+        overflow-x: hidden;
+      }
+
+      /* ========== NAVBAR ========== */
+      .navbar {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        padding: 1rem 0;
+        transition: var(--transition);
+      }
+
+      .navbar-brand {
+        font-weight: 800;
+        font-size: 1.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: var(--text-dark) !important;
+        margin: 0 0.5rem;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        width: 80%;
+        height: 2px;
+        background: var(--primary-gradient);
+        transition: var(--transition);
+      }
+
+      .nav-link:hover::after {
+        transform: translateX(-50%) scaleX(1);
+      }
+
+      .btn-primary {
+        background: var(--primary-gradient);
+        border: none;
+        border-radius: 25px;
+        padding: 0.6rem 1.8rem;
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      /* ========== HERO SECTION ========== */
+      .hero-section {
+        background: var(--primary-gradient);
+        padding: 100px 0 120px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-section h3 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+      }
+
+      .hero-section p {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2.5rem;
+      }
+
+      .search-box {
+        background: white;
+        border-radius: 50px;
+        padding: 0.5rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        max-width: 650px;
+        margin: 0 auto;
+      }
+
+      .search-box input {
+        border: none;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 50px;
+      }
+
+      .search-box input:focus {
+        outline: none;
+        box-shadow: none;
+      }
+
+      .search-box .btn {
+        border-radius: 50px;
+        padding: 1rem 2rem;
+        background: var(--dark-gradient);
+        border: none;
+        font-weight: 600;
+      }
+
+      .search-box .btn:hover {
+        transform: scale(1.05);
+      }
+
+      /* ========== STATS SECTION ========== */
+      .stats-section {
+        margin-top: -60px;
+        position: relative;
+        z-index: 10;
+      }
+
+      .stat-card {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        transition: var(--transition);
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stat-label {
+        color: var(--text-muted);
+        font-weight: 500;
+        margin-top: 0.5rem;
+      }
+
+      /* ========== CATEGORIES ========== */
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        color: var(--text-dark);
+      }
+
+      .section-subtitle {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+        margin-bottom: 3rem;
+      }
+
+      .category-card {
+        background: white;
+        border: none;
+        border-radius: var(--border-radius);
+        padding: 2rem 1.5rem;
+        text-align: center;
+        transition: var(--transition);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .category-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--primary-gradient);
+        opacity: 0;
+        transition: var(--transition);
+      }
+
+      .category-card:hover::before {
+        opacity: 0.05;
+      }
+
+      .category-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .category-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 1rem;
+        transition: var(--transition);
+      }
+
+      .category-card:hover .category-icon {
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .category-name {
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .category-count {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      /* ========== FEATURED LISTINGS ========== */
+      .featured-badge {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: var(--secondary-gradient);
+        color: white;
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        z-index: 5;
+        box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+      }
+
+      .ad-card {
+        background: white;
+        border: none;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        transition: var(--transition);
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .ad-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+      }
+
+      .ad-image-wrapper {
+        position: relative;
+        overflow: hidden;
+        height: 220px;
+      }
+
+      .ad-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .ad-card:hover img {
+        transform: scale(1.1);
+      }
+
+      .ad-content {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .ad-title {
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+        color: var(--text-dark);
+      }
+
+      .ad-price {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.8rem;
+      }
+
+      .ad-location {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: auto;
+      }
+
+      .wishlist-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+        z-index: 5;
+      }
+
+      .wishlist-btn:hover {
+        background: white;
+        transform: scale(1.1);
+      }
+
+      .wishlist-btn i {
+        color: #e53e3e;
+      }
+
+      /* ========== HOW IT WORKS ========== */
+      .how-it-works {
+        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        padding: 5rem 0;
+      }
+
+      .step-card {
+        text-align: center;
+        padding: 2rem 1rem;
+        position: relative;
+      }
+
+      .step-number {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--primary-gradient);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: 800;
+        margin: 0 auto 1.5rem;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      }
+
+      .step-title {
+        font-weight: 700;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+      }
+
+      .step-description {
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      /* ========== TRUST & SAFETY ========== */
+      .trust-section {
+        background: white;
+        padding: 5rem 0;
+      }
+
+      .trust-card {
+        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        border-radius: var(--border-radius);
+        padding: 2.5rem;
+        text-align: center;
+        height: 100%;
+        transition: var(--transition);
+      }
+
+      .trust-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+      }
+
+      .trust-icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 1.5rem;
+      }
+
+      .trust-title {
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .trust-description {
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      /* ========== APP DOWNLOAD CTA ========== */
+      .app-cta {
+        background: var(--dark-gradient);
+        color: white;
+        padding: 5rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .app-cta::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .app-cta h2 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+
+      .app-cta p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+      }
+
+      .app-store-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        background: white;
+        color: var(--text-dark);
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        margin: 0.5rem;
+      }
+
+      .app-store-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        color: var(--text-dark);
+      }
+
+      .app-store-btn i {
+        font-size: 2rem;
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--primary-gradient);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        border: none;
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .back-to-top:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        color: white;
+      }
+
+      /* ========== RESPONSIVE ========== */
+      @media (max-width: 768px) {
+        .hero-section h3 {
+          font-size: 2.5rem;
+        }
+
+        .hero-section p {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .stat-number {
+          font-size: 2rem;
+        }
+
+        .app-cta h2 {
+          font-size: 2rem;
+        }
+
+        .app-store-btn {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .hero-section {
+          padding: 60px 0 80px;
+        }
+
+        .hero-section h3 {
+          font-size: 2rem;
+        }
+
+        .search-box .btn {
+          padding: 1rem 1.5rem;
+        }
+
+        .category-card {
+          padding: 1.5rem 1rem;
+        }
+
+        .step-number {
+          width: 60px;
+          height: 60px;
+          font-size: 1.5rem;
+        }
+      }
+
+      /* ========== ANIMATIONS ========== */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in {
+        animation: fadeInUp 0.6s ease-out;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="images/vendi-logo.png" alt="" width="80px" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/saved-items" class="nav-link">
+                <i class="far fa-heart me-1"></i>Saved
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/login" class="nav-link">
+                <i class="far fa-user me-1"></i>Login
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/post-ad" class="btn btn-primary ms-2">
+                <i class="fas fa-plus me-2"></i>Post Ad
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero-section">
+      <div class="container hero-content">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-10">
+            <h3 class="animate-fade-in">
+              Buy & Sell Anything,<br />Anytime, Anywhere
+            </h3>
+            <p class="animate-fade-in">
+              Join thousands of buyers and sellers. Find great deals on
+              electronics, vehicles, real estate, and more.
+            </p>
+
+            <div class="search-box">
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search for cars, phones, laptops, apartments..."
+                  aria-label="Search"
+                />
+                <button class="btn btn-dark" type="button">
+                  <i class="fas fa-search me-2"></i>Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== STATS SECTION ========== -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="stat-card">
+              <div class="stat-number">50K+</div>
+              <div class="stat-label">Active Listings</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stat-card">
+              <div class="stat-number">25K+</div>
+              <div class="stat-label">Happy Users</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stat-card">
+              <div class="stat-number">100K+</div>
+              <div class="stat-label">Successful Deals</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CATEGORIES ========== -->
+    <section class="py-5 mt-5" id="categories">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title">Browse by Category</h2>
+          <p class="section-subtitle">
+            Explore our wide range of categories to find exactly what you need
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Vehicles -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card category-card">
+              <svg
+                class="category-icon"
+                viewBox="0 0 64 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="64" height="64" rx="12" fill="#E6F0FF" />
+                <path
+                  d="M18 38C16.3431 38 15 39.3431 15 41C15 42.6569 16.3431 44 18 44C19.6569 44 21 42.6569 21 41C21 39.3431 19.6569 38 18 38Z"
+                  fill="#667EEA"
+                />
+                <path
+                  d="M46 38C44.3431 38 43 39.3431 43 41C43 42.6569 44.3431 44 46 44C47.6569 44 49 42.6569 49 41C49 39.3431 47.6569 38 46 38Z"
+                  fill="#667EEA"
+                />
+                <path
+                  d="M12 28L16 20H48L52 28V38H49C49 39.3261 48.4732 40.5979 47.5355 41.5355C46.5979 42.4732 45.3261 43 44 43C42.6739 43 41.4021 42.4732 40.4645 41.5355C39.5268 40.5979 39 39.3261 39 38H25C25 39.3261 24.4732 40.5979 23.5355 41.5355C22.5979 42.4732 21.3261 43 20 43C18.6739 43 17.4021 42.4732 16.4645 41.5355C15.5268 40.5979 15 39.3261 15 38H12V28Z"
+                  stroke="#667EEA"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <h6 class="category-name">Vehicles</h6>
+              <p class="category-count">12,450 ads</p>
+            </div>
+          </div>
+
+          <!-- Mobile Phones -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card category-card">
+              <svg
+                class="category-icon"
+                viewBox="0 0 64 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="64" height="64" rx="12" fill="#E6FFFA" />
+                <rect
+                  x="22"
+                  y="14"
+                  width="20"
+                  height="36"
+                  rx="3"
+                  stroke="#38B2AC"
+                  stroke-width="2"
+                />
+                <line
+                  x1="28"
+                  y1="45"
+                  x2="36"
+                  y2="45"
+                  stroke="#38B2AC"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <h6 class="category-name">Mobile Phones</h6>
+              <p class="category-count">8,320 ads</p>
+            </div>
+          </div>
+
+          <!-- Electronics -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card category-card">
+              <svg
+                class="category-icon"
+                viewBox="0 0 64 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="64" height="64" rx="12" fill="#FFF5E6" />
+                <rect
+                  x="16"
+                  y="20"
+                  width="32"
+                  height="22"
+                  rx="2"
+                  stroke="#F6AD55"
+                  stroke-width="2"
+                />
+                <path
+                  d="M28 42V46H36V42"
+                  stroke="#F6AD55"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <line
+                  x1="24"
+                  y1="50"
+                  x2="40"
+                  y2="50"
+                  stroke="#F6AD55"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <h6 class="category-name">Electronics</h6>
+              <p class="category-count">15,680 ads</p>
+            </div>
+          </div>
+
+          <!-- Real Estate -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card category-card">
+              <svg
+                class="category-icon"
+                viewBox="0 0 64 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="64" height="64" rx="12" fill="#FFF0F5" />
+                <path
+                  d="M32 18L48 30V48H38V38H26V48H16V30L32 18Z"
+                  stroke="#F687B3"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                />
+                <rect x="28" y="42" width="8" height="6" fill="#F687B3" />
+              </svg>
+              <h6 class="category-name">Real Estate</h6>
+              <p class="category-count">5,240 ads</p>
+            </div>
+          </div>
+
+          <!-- Fashion -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card category-card">
+              <svg
+                class="category-icon"
+                viewBox="0 0 64 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="64" height="64" rx="12" fill="#F0E6FF" />
+                <path
+                  d="M32 20L24 28V48H40V28L32 20Z"
+                  stroke="#9F7AEA"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M24 28L20 24V48H24V28Z"
+                  stroke="#9F7AEA"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M40 28L44 24V48H40V28Z"
+                  stroke="#9F7AEA"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <h6 class="category-name">Fashion</h6>
+              <p class="category-count">9,870 ads</p>
+            </div>
+          </div>
+
+          <!-- Furniture -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card category-card">
+              <svg
+                class="category-icon"
+                viewBox="0 0 64 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="64" height="64" rx="12" fill="#E6F7FF" />
+                <rect
+                  x="18"
+                  y="28"
+                  width="28"
+                  height="14"
+                  rx="2"
+                  stroke="#4299E1"
+                  stroke-width="2"
+                />
+                <line
+                  x1="18"
+                  y1="42"
+                  x2="18"
+                  y2="48"
+                  stroke="#4299E1"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <line
+                  x1="46"
+                  y1="42"
+                  x2="46"
+                  y2="48"
+                  stroke="#4299E1"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M14 28H50V24C50 22.8954 49.1046 22 48 22H16C14.8954 22 14 22.8954 14 24V28Z"
+                  stroke="#4299E1"
+                  stroke-width="2"
+                />
+              </svg>
+              <h6 class="category-name">Furniture</h6>
+              <p class="category-count">3,560 ads</p>
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card category-card">
+              <svg
+                class="category-icon"
+                viewBox="0 0 64 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="64" height="64" rx="12" fill="#E6FFF9" />
+                <circle
+                  cx="32"
+                  cy="26"
+                  r="6"
+                  stroke="#48BB78"
+                  stroke-width="2"
+                />
+                <path
+                  d="M20 46C20 40.4772 24.4772 36 30 36H34C39.5228 36 44 40.4772 44 46"
+                  stroke="#48BB78"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <h6 class="category-name">Services</h6>
+              <p class="category-count">7,120 ads</p>
+            </div>
+          </div>
+
+          <!-- Jobs -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card category-card">
+              <svg
+                class="category-icon"
+                viewBox="0 0 64 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="64" height="64" rx="12" fill="#FFFAEB" />
+                <rect
+                  x="18"
+                  y="26"
+                  width="28"
+                  height="18"
+                  rx="2"
+                  stroke="#ECC94B"
+                  stroke-width="2"
+                />
+                <path
+                  d="M26 26V22C26 20.8954 26.8954 20 28 20H36C37.1046 20 38 20.8954 38 22V26"
+                  stroke="#ECC94B"
+                  stroke-width="2"
+                />
+                <line
+                  x1="18"
+                  y1="32"
+                  x2="46"
+                  y2="32"
+                  stroke="#ECC94B"
+                  stroke-width="2"
+                />
+              </svg>
+              <h6 class="category-name">Jobs</h6>
+              <p class="category-count">4,890 ads</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FEATURED LISTINGS ========== -->
+    <section class="py-5 bg-white">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="section-title">Featured Listings</h2>
+          <p class="section-subtitle">
+            Hand-picked premium listings just for you
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Featured Ad 1 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/product/listing-detail">
+              <div class="card ad-card">
+                <div class="ad-image-wrapper">
+                  <span class="featured-badge">
+                    <i class="fas fa-star me-1"></i>Featured
+                  </span>
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <img
+                    src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400"
+                    alt="iPhone 15 Pro Max"
+                  />
+                </div>
+                <div class="ad-content">
+                  <h6 class="ad-title">iPhone 15 Pro Max 256GB</h6>
+                  <p class="ad-price">₦1,250,000</p>
+                  <div class="ad-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Victoria Island, Lagos</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Featured Ad 2 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/product/listing-detail">
+              <div class="card ad-card">
+                <div class="ad-image-wrapper">
+                  <span class="featured-badge">
+                    <i class="fas fa-star me-1"></i>Featured
+                  </span>
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <img
+                    src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400"
+                    alt="Toyota Camry"
+                  />
+                </div>
+                <div class="ad-content">
+                  <h6 class="ad-title">Toyota Camry 2022 XLE</h6>
+                  <p class="ad-price">₦18,500,000</p>
+                  <div class="ad-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Lekki Phase 1, Lagos</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Featured Ad 3 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/product/listing-detail">
+              <div class="card ad-card">
+                <div class="ad-image-wrapper">
+                  <span class="featured-badge">
+                    <i class="fas fa-star me-1"></i>Featured
+                  </span>
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <img
+                    src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400"
+                    alt="MacBook Pro"
+                  />
+                </div>
+                <div class="ad-content">
+                  <h6 class="ad-title">MacBook Pro M3 14" 512GB</h6>
+                  <p class="ad-price">₦2,100,000</p>
+                  <div class="ad-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Wuse 2, Abuja</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Featured Ad 4 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/product/listing-detail">
+              <div class="card ad-card">
+                <div class="ad-image-wrapper">
+                  <span class="featured-badge">
+                    <i class="fas fa-star me-1"></i>Featured
+                  </span>
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <img
+                    src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400"
+                    alt="Apartment"
+                  />
+                </div>
+                <div class="ad-content">
+                  <h6 class="ad-title">3 Bedroom Luxury Apartment</h6>
+                  <p class="ad-price">₦5,500,000/yr</p>
+                  <div class="ad-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Banana Island, Lagos</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== RECENT ADS ========== -->
+    <section class="py-5" style="background: #f7fafc">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="section-title">Recent Listings</h2>
+          <p class="section-subtitle">Fresh deals added every day</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Ad 1 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/product/listing-detail">
+              <div class="card ad-card">
+                <div class="ad-image-wrapper">
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <img
+                    src="https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=400"
+                    alt="Samsung Galaxy"
+                  />
+                </div>
+                <div class="ad-content">
+                  <h6 class="ad-title">Samsung Galaxy S24 Ultra</h6>
+                  <p class="ad-price">₦980,000</p>
+                  <div class="ad-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Ikeja, Lagos</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Ad 2 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/product/listing-detail">
+              <div class="card ad-card">
+                <div class="ad-image-wrapper">
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <img
+                    src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400"
+                    alt="Honda Accord"
+                  />
+                </div>
+                <div class="ad-content">
+                  <h6 class="ad-title">Honda Accord 2020 Sport</h6>
+                  <p class="ad-price">₦12,800,000</p>
+                  <div class="ad-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Garki, Abuja</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Ad 3 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/product/listing-detail">
+              <div class="card ad-card">
+                <div class="ad-image-wrapper">
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <img
+                    src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400"
+                    alt="Laptop"
+                  />
+                </div>
+                <div class="ad-content">
+                  <h6 class="ad-title">Dell XPS 15 i7 16GB RAM</h6>
+                  <p class="ad-price">₦850,000</p>
+                  <div class="ad-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Port Harcourt</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Ad 4 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/product/listing-detail">
+              <div class="card ad-card">
+                <div class="ad-image-wrapper">
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <img
+                    src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400"
+                    alt="Apartment"
+                  />
+                </div>
+                <div class="ad-content">
+                  <h6 class="ad-title">2 Bedroom Apartment</h6>
+                  <p class="ad-price">₦2,200,000/yr</p>
+                  <div class="ad-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Lekki Phase 2, Lagos</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Ad 5 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/product/listing-detail">
+              <div class="card ad-card">
+                <div class="ad-image-wrapper">
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <img
+                    src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400"
+                    alt="Headphones"
+                  />
+                </div>
+                <div class="ad-content">
+                  <h6 class="ad-title">Sony WH-1000XM5 Headphones</h6>
+                  <p class="ad-price">₦285,000</p>
+                  <div class="ad-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Yaba, Lagos</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Ad 6 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/product/listing-detail">
+              <div class="card ad-card">
+                <div class="ad-image-wrapper">
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <img
+                    src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400"
+                    alt="Nike Sneakers"
+                  />
+                </div>
+                <div class="ad-content">
+                  <h6 class="ad-title">Nike Air Max 270 (Size 42)</h6>
+                  <p class="ad-price">₦95,000</p>
+                  <div class="ad-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Surulere, Lagos</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Ad 7 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/product/listing-detail">
+              <div class="card ad-card">
+                <div class="ad-image-wrapper">
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <img
+                    src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400"
+                    alt="Sofa"
+                  />
+                </div>
+                <div class="ad-content">
+                  <h6 class="ad-title">Modern L-Shape Sofa Set</h6>
+                  <p class="ad-price">₦450,000</p>
+                  <div class="ad-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Ajah, Lagos</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Ad 8 -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <a href="/product/listing-detail">
+              <div class="card ad-card">
+                <div class="ad-image-wrapper">
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <img
+                    src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"
+                    alt="Watch"
+                  />
+                </div>
+                <div class="ad-content">
+                  <h6 class="ad-title">Apple Watch Series 9 GPS</h6>
+                  <p class="ad-price">₦380,000</p>
+                  <div class="ad-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Maitama, Abuja</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="text-center mt-5">
+          <a href="#" class="btn btn-primary btn-lg">
+            View All Listings
+            <i class="fas fa-arrow-right ms-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== HOW IT WORKS ========== -->
+    <section class="how-it-works" id="how-it-works">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="section-title">How It Works</h2>
+          <p class="section-subtitle">
+            Start buying and selling in three simple steps
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <h5 class="step-title">Create Your Account</h5>
+              <p class="step-description">
+                Sign up for free in seconds. No credit card required. Start
+                browsing immediately.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <h5 class="step-title">Post or Browse Ads</h5>
+              <p class="step-description">
+                List your items with photos and details, or search through
+                thousands of listings.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <h5 class="step-title">Connect & Deal</h5>
+              <p class="step-description">
+                Chat with buyers or sellers, negotiate prices, and complete your
+                transaction safely.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TRUST & SAFETY ========== -->
+    <section class="trust-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="section-title">Why Choose Vendi?</h2>
+          <p class="section-subtitle">
+            Your safety and satisfaction are our top priorities
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="trust-card">
+              <svg
+                class="trust-icon"
+                viewBox="0 0 80 80"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="40" cy="40" r="40" fill="#E6F0FF" />
+                <path
+                  d="M40 20L48 28L60 24L56 36L64 44L56 52L60 64L48 60L40 68L32 60L20 64L24 52L16 44L24 36L20 24L32 28L40 20Z"
+                  fill="#667EEA"
+                />
+                <path
+                  d="M32 40L37 45L48 34"
+                  stroke="white"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <h5 class="trust-title">Verified Sellers</h5>
+              <p class="trust-description">
+                All sellers go through our verification process to ensure
+                authenticity and build trust in our community.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="trust-card">
+              <svg
+                class="trust-icon"
+                viewBox="0 0 80 80"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="40" cy="40" r="40" fill="#E6FFFA" />
+                <path
+                  d="M40 22C40 22 28 28 28 40C28 52 40 58 40 58C40 58 52 52 52 40C52 28 40 22 40 22Z"
+                  stroke="#38B2AC"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <circle cx="40" cy="40" r="6" fill="#38B2AC" />
+              </svg>
+              <h5 class="trust-title">Secure Payments</h5>
+              <p class="trust-description">
+                Multiple secure payment options with buyer protection to keep
+                your transactions safe and worry-free.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="trust-card">
+              <svg
+                class="trust-icon"
+                viewBox="0 0 80 80"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="40" cy="40" r="40" fill="#FFF5E6" />
+                <circle
+                  cx="40"
+                  cy="32"
+                  r="8"
+                  stroke="#F6AD55"
+                  stroke-width="3"
+                />
+                <path
+                  d="M26 56C26 48.268 32.268 42 40 42C47.732 42 54 48.268 54 56"
+                  stroke="#F6AD55"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M50 28L56 22M56 22L62 28M56 22V36"
+                  stroke="#F6AD55"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <h5 class="trust-title">24/7 Support</h5>
+              <p class="trust-description">
+                Our dedicated support team is always here to help you with any
+                questions or concerns you may have.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== APP DOWNLOAD CTA ========== -->
+    <section class="app-cta">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
+            <h2>Get the Vendi App</h2>
+            <p>
+              Buy and sell on the go. Download our mobile app for iOS and
+              Android for the best experience.
+            </p>
+            <div
+              class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-3"
+            >
+              <a href="#" class="app-store-btn">
+                <i class="fab fa-apple"></i>
+                <div class="text-start">
+                  <small style="font-size: 0.7rem; font-weight: 400"
+                    >Download on the</small
+                  >
+                  <div style="font-size: 1rem; font-weight: 700">App Store</div>
+                </div>
+              </a>
+              <a href="#" class="app-store-btn">
+                <i class="fab fa-google-play"></i>
+                <div class="text-start">
+                  <small style="font-size: 0.7rem; font-weight: 400"
+                    >Get it on</small
+                  >
+                  <div style="font-size: 1rem; font-weight: 700">
+                    Google Play
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-6 text-center">
+            <svg
+              width="300"
+              height="300"
+              viewBox="0 0 300 300"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="75"
+                y="30"
+                width="150"
+                height="240"
+                rx="20"
+                fill="white"
+                fill-opacity="0.1"
+                stroke="white"
+                stroke-width="3"
+              />
+              <rect
+                x="85"
+                y="50"
+                width="130"
+                height="200"
+                rx="5"
+                fill="white"
+                fill-opacity="0.05"
+              />
+              <circle cx="150" cy="245" r="8" fill="white" fill-opacity="0.3" />
+              <rect
+                x="100"
+                y="70"
+                width="100"
+                height="60"
+                rx="8"
+                fill="white"
+                fill-opacity="0.2"
+              />
+              <rect
+                x="100"
+                y="140"
+                width="45"
+                height="40"
+                rx="6"
+                fill="white"
+                fill-opacity="0.15"
+              />
+              <rect
+                x="155"
+                y="140"
+                width="45"
+                height="40"
+                rx="6"
+                fill="white"
+                fill-opacity="0.15"
+              />
+              <rect
+                x="100"
+                y="190"
+                width="100"
+                height="30"
+                rx="6"
+                fill="white"
+                fill-opacity="0.15"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <h5 class="footer-title">
+              <img src="images/vendi-logo.png" alt="" width="80px" />
+            </h5>
+            <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.6">
+              Your trusted marketplace for buying and selling anything. Join
+              thousands of happy users today.
+            </p>
+            <div class="social-links mt-3">
+              <a href="#" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/careers">Careers</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Categories</h5>
+            <ul class="footer-links">
+              <li><a href="#categories">Vehicles</a></li>
+              <li><a href="#categories">Electronics</a></li>
+              <li><a href="#categories">Real Estate</a></li>
+              <li><a href="#categories">Fashion</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Support</h5>
+            <ul class="footer-links">
+              <li><a href="/support/help-center">Help Center</a></li>
+              <li><a href="/support/safety-tips">Safety Tips</a></li>
+              <li><a href="/legal/terms">Terms of Service</a></li>
+              <li><a href="/legal/privacy">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Account</h5>
+            <ul class="footer-links">
+              <li><a href="/auth/login">Login</a></li>
+              <li><a href="/auth/register">Register</a></li>
+              <li><a href="/user/my-ads">My Ads</a></li>
+              <li><a href="/user/saved-items">Saved Items</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="mb-0">
+            © 2025 Vendi. All rights reserved. Made with
+            <i class="fas fa-heart" style="color: #f56565"></i> in Nigeria
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button class="back-to-top" id="backToTop" title="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Wishlist toggle
+      document.querySelectorAll(".wishlist-btn").forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          const icon = this.querySelector("i");
+          if (icon.classList.contains("far")) {
+            icon.classList.remove("far");
+            icon.classList.add("fas");
+          } else {
+            icon.classList.remove("fas");
+            icon.classList.add("far");
+          }
+        });
+      });
+
+      // Navbar background on scroll
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+          navbar.style.boxShadow = "0 4px 30px rgba(0, 0, 0, 0.1)";
+        } else {
+          navbar.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.05)";
+        }
+      });
+
+      // Back to Top Button
+      const backToTopBtn = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopBtn.classList.add("active");
+        } else {
+          backToTopBtn.classList.remove("active");
+        }
+      });
+
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    </script>
+  </body>
+</html>

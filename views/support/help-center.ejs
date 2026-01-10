@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Vendi Help Center - Find answers to your questions"
+    />
+    <title>Vendi - Help Center</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --primary-color: #667eea;
+        --text-dark: #2d3748;
+        --text-muted: #718096;
+        --border-radius: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        background: #f7fafc;
+        font-family: "Inter", sans-serif;
+        color: var(--text-dark);
+      }
+
+      .navbar {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        padding: 1rem 0;
+      }
+
+      .navbar-brand {
+        font-weight: 800;
+        font-size: 1.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: var(--text-dark) !important;
+        margin: 0 0.5rem;
+        transition: var(--transition);
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .btn-primary {
+        background: var(--primary-gradient);
+        border: none;
+        border-radius: 25px;
+        padding: 0.6rem 1.8rem;
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      .page-header {
+        background: var(--primary-gradient);
+        padding: 100px 0 80px;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .page-header h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .page-header p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        position: relative;
+        z-index: 2;
+        margin-bottom: 2rem;
+      }
+
+      .search-box {
+        max-width: 600px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .search-box input {
+        border: none;
+        padding: 1rem 1.5rem;
+        border-radius: 50px;
+        font-size: 1rem;
+        width: 100%;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .help-section {
+        padding: 5rem 0;
+      }
+
+      .category-card {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 2.5rem;
+        text-align: center;
+        transition: var(--transition);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .category-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .category-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--primary-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        color: white;
+        font-size: 2rem;
+      }
+
+      .category-card h5 {
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .category-card p {
+        color: var(--text-muted);
+        margin-bottom: 0;
+      }
+
+      .faq-section {
+        background: white;
+        padding: 5rem 0;
+      }
+
+      .accordion-item {
+        border: none;
+        margin-bottom: 1rem;
+        border-radius: var(--border-radius) !important;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .accordion-button {
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 1.5rem;
+        background: white;
+        color: var(--text-dark);
+      }
+
+      .accordion-button:not(.collapsed) {
+        background: var(--primary-gradient);
+        color: white;
+        box-shadow: none;
+      }
+
+      .accordion-button:focus {
+        box-shadow: none;
+      }
+
+      .accordion-body {
+        padding: 1.5rem;
+        line-height: 1.8;
+        color: var(--text-muted);
+      }
+
+      .contact-cta {
+        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        padding: 4rem 0;
+        text-align: center;
+      }
+
+      .contact-cta h3 {
+        font-weight: 800;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .contact-cta p {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer {
+        background: #1a202c;
+        color: white;
+        padding: 3rem 0 1.5rem;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      @media (max-width: 768px) {
+        .page-header h1 {
+          font-size: 2.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="/images/vendi-logo.png" alt="" width="80px" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/saved-items" class="nav-link">
+                <i class="far fa-heart me-1"></i>Saved
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/login" class="nav-link">
+                <i class="far fa-user me-1"></i>Login
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/post-ad" class="btn btn-primary ms-2">
+                <i class="fas fa-plus me-2"></i>Post Ad
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+      <div class="container">
+        <h1>How Can We Help You?</h1>
+        <p>Search our knowledge base or browse categories below</p>
+        <div class="search-box">
+          <input type="text" placeholder="Search for help articles..." />
+        </div>
+      </div>
+    </section>
+
+    <!-- HELP CATEGORIES -->
+    <section class="help-section">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="category-card">
+              <div class="category-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+              <h5>Buying on Vendi</h5>
+              <p>Learn how to find and purchase items safely</p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="category-card">
+              <div class="category-icon">
+                <i class="fas fa-tags"></i>
+              </div>
+              <h5>Selling on Vendi</h5>
+              <p>Tips for creating effective listings and closing deals</p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="category-card">
+              <div class="category-icon">
+                <i class="fas fa-user-circle"></i>
+              </div>
+              <h5>Account Management</h5>
+              <p>Manage your profile, settings, and preferences</p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="category-card">
+              <div class="category-icon">
+                <i class="fas fa-credit-card"></i>
+              </div>
+              <h5>Payments & Billing</h5>
+              <p>Understand payment methods and transaction fees</p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="category-card">
+              <div class="category-icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h5>Safety & Security</h5>
+              <p>Stay safe while buying and selling online</p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="category-card">
+              <div class="category-icon">
+                <i class="fas fa-headset"></i>
+              </div>
+              <h5>Technical Support</h5>
+              <p>Get help with technical issues and bugs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 style="font-size: 2.5rem; font-weight: 800">
+            Frequently Asked Questions
+          </h2>
+          <p style="color: var(--text-muted); font-size: 1.1rem">
+            Quick answers to common questions
+          </p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="accordion" id="faqAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq1"
+                  >
+                    How do I create an account on Vendi?
+                  </button>
+                </h2>
+                <div
+                  id="faq1"
+                  class="accordion-collapse collapse show"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    Creating an account is simple! Click on the "Register"
+                    button in the top navigation, fill in your details including
+                    name, email, and phone number, create a secure password, and
+                    agree to our terms. You can also sign up using your Google
+                    or Facebook account for faster registration.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq2"
+                  >
+                    Is it free to post ads on Vendi?
+                  </button>
+                </h2>
+                <div
+                  id="faq2"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    Yes! Posting basic ads on Vendi is completely free. You can
+                    list as many items as you want at no cost. We also offer
+                    premium features like featured listings and promoted ads for
+                    sellers who want extra visibility for their products.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq3"
+                  >
+                    How do I contact a seller?
+                  </button>
+                </h2>
+                <div
+                  id="faq3"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    Once you find an item you're interested in, click on the
+                    listing to view full details. You'll see a "Contact Seller"
+                    or "Chat" button that allows you to send a message directly
+                    to the seller through our secure messaging system. You can
+                    also call them if they've provided a phone number.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq4"
+                  >
+                    What payment methods are accepted?
+                  </button>
+                </h2>
+                <div
+                  id="faq4"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    Vendi supports various payment methods including bank
+                    transfers, mobile money (Paga, OPay, etc.), and cash on
+                    delivery for local transactions. We recommend using our
+                    secure escrow service for high-value transactions to protect
+                    both buyers and sellers.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq5"
+                  >
+                    How can I report a suspicious listing?
+                  </button>
+                </h2>
+                <div
+                  id="faq5"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    If you encounter a suspicious listing or seller, click the
+                    "Report" button on the listing page. Provide details about
+                    why you're reporting it, and our trust and safety team will
+                    investigate within 24 hours. We take all reports seriously
+                    to maintain a safe marketplace.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq6"
+                  >
+                    Can I edit or delete my ad after posting?
+                  </button>
+                </h2>
+                <div
+                  id="faq6"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    Absolutely! Go to "My Ads" in your account dashboard, find
+                    the listing you want to modify, and click "Edit" to update
+                    details, photos, or pricing. You can also delete ads that
+                    are no longer relevant. Changes are reflected immediately on
+                    the platform.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="contact-cta">
+      <div class="container">
+        <h3>Still Need Help?</h3>
+        <p>Our support team is here to assist you 24/7</p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <a href="/contact" class="btn btn-primary btn-lg">
+            <i class="fas fa-envelope me-2"></i>Contact Support
+          </a>
+          <a
+            href="/support/safety"
+            class="btn btn-outline-primary btn-lg"
+            style="
+              border: 2px solid var(--primary-color);
+              color: var(--primary-color);
+              background: white;
+              border-radius: 25px;
+              padding: 0.6rem 1.8rem;
+              font-weight: 600;
+            "
+          >
+            <i class="fas fa-shield-alt me-2"></i>Safety Tips
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <h5 class="footer-title">
+              <img src="../images/vendi-logo.png" alt="" width="80px" />
+            </h5>
+            <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.6">
+              Your trusted marketplace for buying and selling anything. Join
+              thousands of happy users today.
+            </p>
+            <div class="social-links mt-3">
+              <a href="#" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/careers">Careers</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Categories</h5>
+            <ul class="footer-links">
+              <li><a href="/#categories">Vehicles</a></li>
+              <li><a href="/#categories">Electronics</a></li>
+              <li><a href="/#categories">Real Estate</a></li>
+              <li><a href="/#categories">Fashion</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Support</h5>
+            <ul class="footer-links">
+              <li><a href="/support/help">Help Center</a></li>
+              <li><a href="/support/safety">Safety Tips</a></li>
+              <li><a href="/legal/terms">Terms of Service</a></li>
+              <li><a href="/legal/privacy">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Account</h5>
+            <ul class="footer-links">
+              <li><a href="/auth/login">Login</a></li>
+              <li><a href="/auth/register">Register</a></li>
+              <li><a href="/user/my-ads">My Ads</a></li>
+              <li><a href="/user/saved-items">Saved Items</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="mb-0">
+            © 2025 Vendi. All rights reserved. Made with
+            <i class="fas fa-heart" style="color: #f56565"></i> in Nigeria
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

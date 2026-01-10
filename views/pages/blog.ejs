@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Vendi Blog - Tips, guides, and news about buying and selling online"
+    />
+    <title>Vendi - Blog</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="/style.css" />
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --primary-color: #667eea;
+        --text-dark: #2d3748;
+        --text-muted: #718096;
+        --border-radius: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        background: #f7fafc;
+        font-family: "Inter", sans-serif;
+        color: var(--text-dark);
+      }
+
+      .navbar {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        padding: 1rem 0;
+      }
+
+      .navbar-brand {
+        font-weight: 800;
+        font-size: 1.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: var(--text-dark) !important;
+        margin: 0 0.5rem;
+        transition: var(--transition);
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .btn-primary {
+        background: var(--primary-gradient);
+        border: none;
+        border-radius: 25px;
+        padding: 0.6rem 1.8rem;
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      .page-header {
+        background: var(--primary-gradient);
+        padding: 100px 0 80px;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .page-header h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .page-header p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        position: relative;
+        z-index: 2;
+      }
+
+      .blog-section {
+        padding: 5rem 0;
+      }
+
+      .blog-card {
+        background: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        transition: var(--transition);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .blog-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .blog-image {
+        width: 100%;
+        height: 250px;
+        background: var(--primary-gradient);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .blog-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .blog-category {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--primary-color);
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .blog-content {
+        padding: 2rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .blog-meta {
+        display: flex;
+        gap: 1.5rem;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .blog-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .blog-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--text-dark);
+        line-height: 1.4;
+      }
+
+      .blog-excerpt {
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+      }
+
+      .read-more {
+        color: var(--primary-color);
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: var(--transition);
+      }
+
+      .read-more:hover {
+        gap: 1rem;
+        color: var(--primary-color);
+      }
+
+      .featured-post {
+        background: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        margin-bottom: 3rem;
+      }
+
+      .featured-image {
+        height: 400px;
+        background: var(--primary-gradient);
+        position: relative;
+      }
+
+      .featured-badge {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        padding: 0.6rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .sidebar-widget {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .widget-title {
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-dark);
+      }
+
+      .category-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .category-list li {
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .category-list li:last-child {
+        border-bottom: none;
+      }
+
+      .category-list a {
+        color: var(--text-dark);
+        text-decoration: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: var(--transition);
+      }
+
+      .category-list a:hover {
+        color: var(--primary-color);
+        padding-left: 5px;
+      }
+
+      .category-count {
+        background: #f7fafc;
+        padding: 0.2rem 0.8rem;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      .recent-post {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .recent-post:last-child {
+        border-bottom: none;
+      }
+
+      .recent-post-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 12px;
+        background: var(--primary-gradient);
+        flex-shrink: 0;
+      }
+
+      .recent-post-content h6 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+      }
+
+      .recent-post-content a {
+        color: var(--text-dark);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .recent-post-content a:hover {
+        color: var(--primary-color);
+      }
+
+      .recent-post-date {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      @media (max-width: 768px) {
+        .page-header h1 {
+          font-size: 2.5rem;
+        }
+        .featured-image {
+          height: 250px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="/images/vendi-logo.png" alt="" width="80px" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/saved-items" class="nav-link">
+                <i class="far fa-heart me-1"></i>Saved
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/login" class="nav-link">
+                <i class="far fa-user me-1"></i>Login
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/post-ad" class="btn btn-primary ms-2">
+                <i class="fas fa-plus me-2"></i>Post Ad
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+      <div class="container">
+        <h1>Vendi Blog</h1>
+        <p>Tips, guides, and insights for smart buying and selling</p>
+      </div>
+    </section>
+
+    <!-- BLOG CONTENT -->
+    <section class="blog-section">
+      <div class="container">
+        <div class="row">
+          <!-- MAIN CONTENT -->
+          <div class="col-lg-8">
+            <!-- FEATURED POST -->
+            <div class="featured-post">
+              <div class="featured-image">
+                <span class="featured-badge">
+                  <i class="fas fa-star me-2"></i>Featured
+                </span>
+              </div>
+              <div class="blog-content">
+                <div class="blog-meta">
+                  <span><i class="far fa-calendar"></i>Nov 20, 2025</span>
+                  <span><i class="far fa-user"></i>Adebayo Johnson</span>
+                  <span><i class="far fa-clock"></i>8 min read</span>
+                </div>
+                <h2 class="blog-title">
+                  10 Essential Tips for Selling Your Car Online in Nigeria
+                </h2>
+                <p class="blog-excerpt">
+                  Selling your car online can be a smooth and profitable
+                  experience if you know the right strategies. In this
+                  comprehensive guide, we'll walk you through everything you
+                  need to know to get the best price for your vehicle, from
+                  preparing your car for sale to negotiating with potential
+                  buyers.
+                </p>
+                <a href="#" class="read-more">
+                  Read Full Article <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- BLOG POSTS -->
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="blog-card">
+                  <div class="blog-image">
+                    <span class="blog-category">Guides</span>
+                  </div>
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <span><i class="far fa-calendar"></i>Nov 18, 2025</span>
+                      <span><i class="far fa-clock"></i>5 min</span>
+                    </div>
+                    <h3 class="blog-title">
+                      How to Spot Fake Products When Shopping Online
+                    </h3>
+                    <p class="blog-excerpt">
+                      Learn the telltale signs of counterfeit products and
+                      protect yourself from scams when shopping online.
+                    </p>
+                    <a href="#" class="read-more">
+                      Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="blog-card">
+                  <div class="blog-image">
+                    <span class="blog-category">Safety</span>
+                  </div>
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <span><i class="far fa-calendar"></i>Nov 15, 2025</span>
+                      <span><i class="far fa-clock"></i>6 min</span>
+                    </div>
+                    <h3 class="blog-title">
+                      Safe Payment Methods for Online Transactions
+                    </h3>
+                    <p class="blog-excerpt">
+                      Discover the safest ways to send and receive payments when
+                      buying or selling items online.
+                    </p>
+                    <a href="#" class="read-more">
+                      Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="blog-card">
+                  <div class="blog-image">
+                    <span class="blog-category">Tips</span>
+                  </div>
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <span><i class="far fa-calendar"></i>Nov 12, 2025</span>
+                      <span><i class="far fa-clock"></i>4 min</span>
+                    </div>
+                    <h3 class="blog-title">
+                      Photography Tips for Better Product Listings
+                    </h3>
+                    <p class="blog-excerpt">
+                      Great photos can make or break your listing. Learn how to
+                      take stunning product photos with just your smartphone.
+                    </p>
+                    <a href="#" class="read-more">
+                      Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="blog-card">
+                  <div class="blog-image">
+                    <span class="blog-category">Market Trends</span>
+                  </div>
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <span><i class="far fa-calendar"></i>Nov 10, 2025</span>
+                      <span><i class="far fa-clock"></i>7 min</span>
+                    </div>
+                    <h3 class="blog-title">
+                      The Rise of Online Marketplaces in Nigeria
+                    </h3>
+                    <p class="blog-excerpt">
+                      Explore how e-commerce is transforming the way Nigerians
+                      buy and sell products in 2025.
+                    </p>
+                    <a href="#" class="read-more">
+                      Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PAGINATION -->
+            <nav class="mt-5">
+              <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#"
+                    ><i class="fas fa-chevron-left"></i
+                  ></a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#"
+                    ><i class="fas fa-chevron-right"></i
+                  ></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <!-- SIDEBAR -->
+          <div class="col-lg-4">
+            <!-- CATEGORIES -->
+            <div class="sidebar-widget">
+              <h5 class="widget-title">Categories</h5>
+              <ul class="category-list">
+                <li>
+                  <a href="#">
+                    <span><i class="fas fa-tag me-2"></i>Buying Guides</span>
+                    <span class="category-count">24</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span><i class="fas fa-tag me-2"></i>Selling Tips</span>
+                    <span class="category-count">18</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span
+                      ><i class="fas fa-tag me-2"></i>Safety & Security</span
+                    >
+                    <span class="category-count">15</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span><i class="fas fa-tag me-2"></i>Market Trends</span>
+                    <span class="category-count">12</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span><i class="fas fa-tag me-2"></i>Success Stories</span>
+                    <span class="category-count">9</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- RECENT POSTS -->
+            <div class="sidebar-widget">
+              <h5 class="widget-title">Recent Posts</h5>
+              <div class="recent-post">
+                <div class="recent-post-image"></div>
+                <div class="recent-post-content">
+                  <h6><a href="#">Negotiation Tactics for Smart Buyers</a></h6>
+                  <p class="recent-post-date">Nov 8, 2025</p>
+                </div>
+              </div>
+              <div class="recent-post">
+                <div class="recent-post-image"></div>
+                <div class="recent-post-content">
+                  <h6><a href="#">Best Times to List Your Products</a></h6>
+                  <p class="recent-post-date">Nov 5, 2025</p>
+                </div>
+              </div>
+              <div class="recent-post">
+                <div class="recent-post-image"></div>
+                <div class="recent-post-content">
+                  <h6><a href="#">Understanding Buyer Psychology</a></h6>
+                  <p class="recent-post-date">Nov 2, 2025</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- NEWSLETTER -->
+            <div
+              class="sidebar-widget"
+              style="background: var(--primary-gradient); color: white"
+            >
+              <h5 class="widget-title" style="color: white">
+                Subscribe to Newsletter
+              </h5>
+              <p style="opacity: 0.9; margin-bottom: 1.5rem">
+                Get the latest tips and updates delivered to your inbox.
+              </p>
+              <form>
+                <input
+                  type="email"
+                  class="form-control mb-3"
+                  placeholder="Your email address"
+                  required
+                  style="border: none"
+                />
+                <button
+                  type="submit"
+                  class="btn btn-light w-100"
+                  style="font-weight: 600"
+                >
+                  <i class="fas fa-envelope me-2"></i>Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <h5 class="footer-title">
+              <img src="/images/vendi-logo.png" alt="" width="80px" />
+            </h5>
+            <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.6">
+              Your trusted marketplace for buying and selling anything. Join
+              thousands of happy users today.
+            </p>
+            <div class="social-links mt-3">
+              <a href="#" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/careers">Careers</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Categories</h5>
+            <ul class="footer-links">
+              <li><a href="/#categories">Vehicles</a></li>
+              <li><a href="/#categories">Electronics</a></li>
+              <li><a href="/#categories">Real Estate</a></li>
+              <li><a href="/#categories">Fashion</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Support</h5>
+            <ul class="footer-links">
+              <li><a href="/support/help-center">Help Center</a></li>
+              <li><a href="/support/safety-tips">Safety Tips</a></li>
+              <li><a href="/legal/terms">Terms of Service</a></li>
+              <li><a href="/legal/privacy">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Account</h5>
+            <ul class="footer-links">
+              <li><a href="/auth/login">Login</a></li>
+              <li><a href="/auth/register">Register</a></li>
+              <li><a href="/user/my-ads">My Ads</a></li>
+              <li><a href="/user/saved-items">Saved Items</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="mb-0">
+            © 2025 Vendi. All rights reserved. Made with
+            <i class="fas fa-heart" style="color: #f56565"></i> in Nigeria
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

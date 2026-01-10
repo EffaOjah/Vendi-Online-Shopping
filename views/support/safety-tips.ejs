@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Stay safe while buying and selling on Vendi"
+    />
+    <title>Vendi - Safety Tips</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --primary-color: #667eea;
+        --text-dark: #2d3748;
+        --text-muted: #718096;
+        --border-radius: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        background: #f7fafc;
+        font-family: "Inter", sans-serif;
+        color: var(--text-dark);
+      }
+
+      .navbar {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        padding: 1rem 0;
+      }
+
+      .navbar-brand {
+        font-weight: 800;
+        font-size: 1.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: var(--text-dark) !important;
+        margin: 0 0.5rem;
+        transition: var(--transition);
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .btn-primary {
+        background: var(--primary-gradient);
+        border: none;
+        border-radius: 25px;
+        padding: 0.6rem 1.8rem;
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      .page-header {
+        background: var(--primary-gradient);
+        padding: 100px 0 80px;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .page-header h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .page-header p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        position: relative;
+        z-index: 2;
+      }
+
+      .content-section {
+        padding: 5rem 0;
+      }
+
+      .tip-card {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .tip-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .tip-header {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .tip-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: var(--primary-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.8rem;
+        flex-shrink: 0;
+      }
+
+      .tip-card h3 {
+        font-weight: 700;
+        margin: 0;
+        font-size: 1.5rem;
+      }
+
+      .tip-card ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .tip-card ul li {
+        padding: 0.8rem 0;
+        padding-left: 2rem;
+        position: relative;
+        line-height: 1.6;
+        color: var(--text-muted);
+      }
+
+      .tip-card ul li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #48bb78;
+        font-weight: 800;
+        font-size: 1.2rem;
+      }
+
+      .warning-box {
+        background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+        border-left: 4px solid #fc8181;
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        margin: 2rem 0;
+      }
+
+      .warning-box h4 {
+        color: #c53030;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .warning-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .warning-box ul li {
+        padding: 0.5rem 0;
+        padding-left: 2rem;
+        position: relative;
+        color: #742a2a;
+      }
+
+      .warning-box ul li::before {
+        content: "⚠";
+        position: absolute;
+        left: 0;
+        font-size: 1.2rem;
+      }
+
+      .footer {
+        background: #1a202c;
+        color: white;
+        padding: 3rem 0 1.5rem;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      @media (max-width: 768px) {
+        .page-header h1 {
+          font-size: 2.5rem;
+        }
+        .tip-header {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="../images/vendi-logo.png" alt="" width="80px" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/saved-items" class="nav-link">
+                <i class="far fa-heart me-1"></i>Saved
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/login" class="nav-link">
+                <i class="far fa-user me-1"></i>Login
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/post-ad" class="btn btn-primary ms-2">
+                <i class="fas fa-plus me-2"></i>Post Ad
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+      <div class="container">
+        <h1><i class="fas fa-shield-alt me-3"></i>Safety Tips</h1>
+        <p>
+          Your security is our priority. Follow these guidelines for safe
+          transactions
+        </p>
+      </div>
+    </section>
+
+    <!-- SAFETY TIPS -->
+    <section class="content-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <!-- For Buyers -->
+            <div class="tip-card">
+              <div class="tip-header">
+                <div class="tip-icon">
+                  <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h3>Safety Tips for Buyers</h3>
+              </div>
+              <ul>
+                <li>
+                  Always meet sellers in public, well-lit places during daylight
+                  hours
+                </li>
+                <li>Inspect items thoroughly before making payment</li>
+                <li>
+                  Verify the seller's identity and check their ratings and
+                  reviews
+                </li>
+                <li>
+                  Never send money or personal information before seeing the
+                  item
+                </li>
+                <li>
+                  Use secure payment methods and avoid wire transfers to
+                  strangers
+                </li>
+                <li>
+                  Trust your instincts - if a deal seems too good to be true, it
+                  probably is
+                </li>
+                <li>Bring a friend or family member when meeting sellers</li>
+                <li>Keep all communication within the Vendi platform</li>
+              </ul>
+            </div>
+
+            <!-- For Sellers -->
+            <div class="tip-card">
+              <div class="tip-header">
+                <div class="tip-icon">
+                  <i class="fas fa-tags"></i>
+                </div>
+                <h3>Safety Tips for Sellers</h3>
+              </div>
+              <ul>
+                <li>
+                  Meet buyers in safe, public locations with good visibility
+                </li>
+                <li>
+                  Never share your home address or personal banking details
+                </li>
+                <li>
+                  Be cautious of buyers who want to pay more than the asking
+                  price
+                </li>
+                <li>Verify payment before handing over items</li>
+                <li>
+                  Take clear photos and provide accurate descriptions to avoid
+                  disputes
+                </li>
+                <li>Keep records of all communications and transactions</li>
+                <li>Don't accept checks or money orders from unknown buyers</li>
+                <li>
+                  Report suspicious behavior immediately to our support team
+                </li>
+              </ul>
+            </div>
+
+            <!-- Payment Safety -->
+            <div class="tip-card">
+              <div class="tip-header">
+                <div class="tip-icon">
+                  <i class="fas fa-credit-card"></i>
+                </div>
+                <h3>Payment Safety Guidelines</h3>
+              </div>
+              <ul>
+                <li>
+                  Use Vendi's secure escrow service for high-value transactions
+                </li>
+                <li>Prefer cash payments for local, in-person transactions</li>
+                <li>Verify bank transfer receipts before releasing items</li>
+                <li>
+                  Never share your PIN, OTP, or full card details with anyone
+                </li>
+                <li>Be wary of overpayment scams and requests for refunds</li>
+                <li>
+                  Document all payment transactions with receipts or screenshots
+                </li>
+                <li>Avoid payment methods that can't be traced or reversed</li>
+              </ul>
+            </div>
+
+            <!-- Online Safety -->
+            <div class="tip-card">
+              <div class="tip-header">
+                <div class="tip-icon">
+                  <i class="fas fa-lock"></i>
+                </div>
+                <h3>Online Security Best Practices</h3>
+              </div>
+              <ul>
+                <li>Use a strong, unique password for your Vendi account</li>
+                <li>Enable two-factor authentication for added security</li>
+                <li>Never share your account credentials with anyone</li>
+                <li>
+                  Be cautious of phishing emails claiming to be from Vendi
+                </li>
+                <li>
+                  Log out of your account when using shared or public computers
+                </li>
+                <li>
+                  Regularly update your contact information and security
+                  settings
+                </li>
+                <li>
+                  Report any unauthorized access to your account immediately
+                </li>
+              </ul>
+            </div>
+
+            <!-- Warning Box -->
+            <div class="warning-box">
+              <h4>
+                <i class="fas fa-exclamation-triangle"></i>Red Flags to Watch
+                Out For
+              </h4>
+              <ul>
+                <li>Sellers or buyers who refuse to meet in person</li>
+                <li>Requests to complete transactions outside the platform</li>
+                <li>
+                  Pressure to make quick decisions without proper inspection
+                </li>
+                <li>
+                  Deals that seem unrealistically cheap or too good to be true
+                </li>
+                <li>Requests for advance payment before seeing the item</li>
+                <li>Poor communication or evasive answers to questions</li>
+                <li>
+                  Sellers with no reviews or newly created accounts for
+                  expensive items
+                </li>
+                <li>
+                  Requests for personal information like ID numbers or passwords
+                </li>
+              </ul>
+            </div>
+
+            <!-- Reporting -->
+            <div class="tip-card">
+              <div class="tip-header">
+                <div class="tip-icon">
+                  <i class="fas fa-flag"></i>
+                </div>
+                <h3>How to Report Suspicious Activity</h3>
+              </div>
+              <p
+                style="
+                  color: var(--text-muted);
+                  line-height: 1.8;
+                  margin-bottom: 1.5rem;
+                "
+              >
+                If you encounter any suspicious listings, users, or behavior on
+                Vendi, please report it immediately. Your reports help us
+                maintain a safe marketplace for everyone.
+              </p>
+              <ul>
+                <li>
+                  Click the "Report" button on any suspicious listing or user
+                  profile
+                </li>
+                <li>Provide detailed information about the issue</li>
+                <li>Include screenshots or evidence if available</li>
+                <li>
+                  Our trust and safety team will investigate within 24 hours
+                </li>
+                <li>You can also email us at safety@vendi.ng</li>
+              </ul>
+            </div>
+
+            <!-- Emergency Contact -->
+            <div
+              class="tip-card"
+              style="
+                background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+              "
+            >
+              <div class="tip-header">
+                <div class="tip-icon">
+                  <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3>Emergency Contact</h3>
+              </div>
+              <p style="color: var(--text-muted); line-height: 1.8">
+                If you feel unsafe or threatened during a transaction, contact
+                local authorities immediately. For non-emergency safety
+                concerns, reach our 24/7 support team:
+              </p>
+              <div style="margin-top: 1.5rem">
+                <p
+                  style="
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  <i
+                    class="fas fa-envelope me-2"
+                    style="color: var(--primary-color)"
+                  ></i>
+                  safety@vendi.ng
+                </p>
+                <p
+                  style="font-weight: 600; font-size: 1.1rem; margin-bottom: 0"
+                >
+                  <i
+                    class="fas fa-phone me-2"
+                    style="color: var(--primary-color)"
+                  ></i>
+                  +234 800 SAFE HUB (7233 482)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <h5 class="footer-title">
+              <img src="../images/vendi-logo.png" alt="" width="80px" />
+            </h5>
+            <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.6">
+              Your trusted marketplace for buying and selling anything. Join
+              thousands of happy users today.
+            </p>
+            <div class="social-links mt-3">
+              <a href="#" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/careers">Careers</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Categories</h5>
+            <ul class="footer-links">
+              <li><a href="/#categories">Vehicles</a></li>
+              <li><a href="/#categories">Electronics</a></li>
+              <li><a href="/#categories">Real Estate</a></li>
+              <li><a href="/#categories">Fashion</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Support</h5>
+            <ul class="footer-links">
+              <li><a href="/support/help">Help Center</a></li>
+              <li><a href="/support/safety">Safety Tips</a></li>
+              <li><a href="/legal/terms">Terms of Service</a></li>
+              <li><a href="/legal/privacy">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Account</h5>
+            <ul class="footer-links">
+              <li><a href="/auth/login">Login</a></li>
+              <li><a href="/auth/register">Register</a></li>
+              <li><a href="/user/my-ads">My Ads</a></li>
+              <li><a href="/user/saved-items">Saved Items</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="mb-0">
+            © 2025 Vendi. All rights reserved. Made with
+            <i class="fas fa-heart" style="color: #f56565"></i> in Nigeria
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

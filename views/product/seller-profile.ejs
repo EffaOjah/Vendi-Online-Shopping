@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Seller profile on MarketHub" />
+    <title>Adebayo Johnson - MarketHub</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --primary-color: #667eea;
+        --text-dark: #2d3748;
+        --text-muted: #718096;
+        --border-radius: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        background: #f7fafc;
+        font-family: "Inter", sans-serif;
+        color: var(--text-dark);
+      }
+
+      .navbar {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        padding: 1rem 0;
+      }
+
+      .navbar-brand {
+        font-weight: 800;
+        font-size: 1.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: var(--text-dark) !important;
+        margin: 0 0.5rem;
+        transition: var(--transition);
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .btn-primary {
+        background: var(--primary-gradient);
+        border: none;
+        border-radius: 25px;
+        padding: 0.6rem 1.8rem;
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      .profile-header {
+        background: var(--primary-gradient);
+        padding: 3rem 0;
+        color: white;
+      }
+
+      .profile-card {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 3rem;
+        margin-top: -2rem;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile-main {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+        margin-bottom: 2rem;
+      }
+
+      .profile-avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: var(--primary-gradient);
+        flex-shrink: 0;
+      }
+
+      .profile-info h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+      }
+
+      .verified-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #c6f6d5;
+        color: #22543d;
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .rating-display {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .stars {
+        color: #f6ad55;
+        font-size: 1.2rem;
+      }
+
+      .rating-text {
+        color: var(--text-muted);
+        font-weight: 600;
+      }
+
+      .profile-stats {
+        display: flex;
+        gap: 3rem;
+        margin-top: 1.5rem;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: 800;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stat-label {
+        color: var(--text-muted);
+        font-weight: 600;
+      }
+
+      .profile-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .btn-action {
+        padding: 0.8rem 2rem;
+        border-radius: 12px;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .about-section {
+        background: #f7fafc;
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        margin: 2rem 0;
+      }
+
+      .about-section h3 {
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+
+      .about-section p {
+        color: var(--text-muted);
+        line-height: 1.8;
+      }
+
+      .reviews-section {
+        margin: 3rem 0;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-bottom: 2rem;
+      }
+
+      .review-card {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .reviewer-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .reviewer-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+
+      .reviewer-name {
+        font-weight: 700;
+      }
+
+      .review-date {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      .review-stars {
+        color: #f6ad55;
+      }
+
+      .review-text {
+        color: var(--text-muted);
+        line-height: 1.8;
+      }
+
+      .listings-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .listing-card {
+        background: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        transition: var(--transition);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .listing-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .listing-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .listing-card-body {
+        padding: 1.5rem;
+      }
+
+      .listing-card-title {
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+      }
+
+      .listing-card-price {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .listing-card-location {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        .profile-main {
+          flex-direction: column;
+          text-align: center;
+        }
+        .profile-stats {
+          justify-content: center;
+        }
+        .profile-actions {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="/images/vendi-logo.png" alt="" width="80px" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/my-ads" class="nav-link">My Ads</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/chat" class="nav-link">Messages</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/saved-items" class="nav-link">
+                <i class="far fa-heart me-1"></i>Saved
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                <img
+                  src="https://ui-avatars.com/api/?name=John+Doe&background=random"
+                  class="rounded-circle me-1"
+                  width="32"
+                  height="32"
+                  alt="User"
+                />
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 mt-2"
+              >
+                <li>
+                  <a class="dropdown-item py-2" href="/user/profile"
+                    ><i class="fas fa-user me-2"></i>Profile</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item py-2" href="/user/settings"
+                    ><i class="fas fa-cog me-2"></i>Settings</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item py-2 text-danger" href="/auth/login"
+                    ><i class="fas fa-sign-out-alt me-2"></i>Logout</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="/user/post-ad" class="btn btn-primary ms-2">
+                <i class="fas fa-plus me-2"></i>Post Ad
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- PROFILE HEADER -->
+    <section class="profile-header">
+      <div class="container">
+        <h2 style="font-weight: 800; font-size: 2rem">Seller Profile</h2>
+      </div>
+    </section>
+
+    <!-- PROFILE CONTENT -->
+    <section style="padding: 0 0 5rem">
+      <div class="container">
+        <div class="profile-card">
+          <div class="profile-main">
+            <div class="profile-avatar">
+              <img
+                src="https://ui-avatars.com/api/?name=Adebayo+Johnson&background=random"
+                class="rounded-circle me-1"
+                width="100%"
+                height="100%"
+                alt="User"
+              />
+            </div>
+            <div class="profile-info">
+              <h1>Adebayo Johnson</h1>
+              <div class="verified-badge">
+                <i class="fas fa-check-circle"></i>
+                Verified Seller
+              </div>
+              <div class="rating-display">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="rating-text">4.8 out of 5 (24 reviews)</span>
+              </div>
+              <p style="color: var(--text-muted); margin-bottom: 0">
+                <i class="fas fa-map-marker-alt me-2"></i>Victoria Island, Lagos
+              </p>
+              <p style="color: var(--text-muted)">
+                <i class="far fa-calendar me-2"></i>Member since January 2023
+              </p>
+
+              <div class="profile-stats">
+                <div class="stat-item">
+                  <div class="stat-number">28</div>
+                  <div class="stat-label">Active Listings</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">156</div>
+                  <div class="stat-label">Total Sales</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">98%</div>
+                  <div class="stat-label">Response Rate</div>
+                </div>
+              </div>
+
+              <div class="profile-actions">
+                <button
+                  class="btn-action"
+                  style="background: var(--primary-gradient); color: white"
+                >
+                  <i class="fas fa-comment me-2"></i>Send Message
+                </button>
+                <button
+                  class="btn-action"
+                  style="background: #48bb78; color: white"
+                >
+                  <i class="fas fa-phone me-2"></i>Show Phone
+                </button>
+                <button
+                  class="btn-action"
+                  style="
+                    background: white;
+                    border: 2px solid #e2e8f0;
+                    color: var(--text-dark);
+                  "
+                >
+                  <i class="fas fa-share-alt me-2"></i>Share Profile
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-section">
+            <h3>About This Seller</h3>
+            <p>
+              Professional electronics dealer with over 5 years of experience in
+              the Nigerian market. I specialize in genuine smartphones, laptops,
+              and accessories from trusted brands. All products come with
+              warranty and after-sales support. I pride myself on fast response
+              times and excellent customer service. Feel free to reach out with
+              any questions!
+            </p>
+          </div>
+        </div>
+
+        <!-- ACTIVE LISTINGS -->
+        <div style="margin-top: 4rem">
+          <h2 class="section-title">Active Listings (28)</h2>
+          <div class="listings-grid">
+            <a
+              href="/product/listing-detail"
+              class="text-decoration-none text-dark"
+            >
+              <div class="listing-card">
+                <img
+                  src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400"
+                  alt="iPhone"
+                />
+                <div class="listing-card-body">
+                  <h6 class="listing-card-title">iPhone 15 Pro Max 256GB</h6>
+                  <div class="listing-card-price">₦1,250,000</div>
+                  <div class="listing-card-location">
+                    <i class="fas fa-map-marker-alt me-1"></i>Victoria Island,
+                    Lagos
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a
+              href="/product/listing-detail"
+              class="text-decoration-none text-dark"
+            >
+              <div class="listing-card">
+                <img
+                  src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400"
+                  alt="Laptop"
+                />
+                <div class="listing-card-body">
+                  <h6 class="listing-card-title">MacBook Pro M3 14" 512GB</h6>
+                  <div class="listing-card-price">₦2,100,000</div>
+                  <div class="listing-card-location">
+                    <i class="fas fa-map-marker-alt me-1"></i>Victoria Island,
+                    Lagos
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a
+              href="/product/listing-detail"
+              class="text-decoration-none text-dark"
+            >
+              <div class="listing-card">
+                <img
+                  src="https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=400"
+                  alt="Samsung"
+                />
+                <div class="listing-card-body">
+                  <h6 class="listing-card-title">Samsung Galaxy S24 Ultra</h6>
+                  <div class="listing-card-price">₦980,000</div>
+                  <div class="listing-card-location">
+                    <i class="fas fa-map-marker-alt me-1"></i>Victoria Island,
+                    Lagos
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a
+              href="/product/listing-detail"
+              class="text-decoration-none text-dark"
+            >
+              <div class="listing-card">
+                <img
+                  src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400"
+                  alt="Headphones"
+                />
+                <div class="listing-card-body">
+                  <h6 class="listing-card-title">Sony WH-1000XM5 Headphones</h6>
+                  <div class="listing-card-price">₦285,000</div>
+                  <div class="listing-card-location">
+                    <i class="fas fa-map-marker-alt me-1"></i>Victoria Island,
+                    Lagos
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- REVIEWS -->
+        <div class="reviews-section">
+          <h2 class="section-title">Customer Reviews (24)</h2>
+
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar"></div>
+                <div>
+                  <div class="reviewer-name">Chioma Okafor</div>
+                  <div class="review-date">2 weeks ago</div>
+                </div>
+              </div>
+              <div class="review-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="review-text">
+              Excellent seller! Very professional and responsive. The iPhone I
+              bought was exactly as described and came with all accessories.
+              Highly recommended!
+            </p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <div
+                  class="reviewer-avatar"
+                  style="
+                    background: linear-gradient(
+                      135deg,
+                      #667eea 0%,
+                      #764ba2 100%
+                    );
+                  "
+                ></div>
+                <div>
+                  <div class="reviewer-name">Tunde Bakare</div>
+                  <div class="review-date">1 month ago</div>
+                </div>
+              </div>
+              <div class="review-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="review-text">
+              Great experience! Fast delivery and the MacBook was brand new as
+              promised. Will definitely buy from this seller again.
+            </p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <div
+                  class="reviewer-avatar"
+                  style="
+                    background: linear-gradient(
+                      135deg,
+                      #fa709a 0%,
+                      #fee140 100%
+                    );
+                  "
+                ></div>
+                <div>
+                  <div class="reviewer-name">Sarah Ibrahim</div>
+                  <div class="review-date">2 months ago</div>
+                </div>
+              </div>
+              <div class="review-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+            </div>
+            <p class="review-text">
+              Good seller with quality products. Only minor issue was the
+              delivery took a bit longer than expected, but overall satisfied
+              with the purchase.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

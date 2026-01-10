@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Vendi Terms of Service" />
+    <title>Vendi - Terms of Service</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="/style.css" />
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --primary-color: #667eea;
+        --text-dark: #2d3748;
+        --text-muted: #718096;
+        --border-radius: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        background: #f7fafc;
+        font-family: "Inter", sans-serif;
+        color: var(--text-dark);
+      }
+
+      .navbar {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        padding: 1rem 0;
+      }
+
+      .navbar-brand {
+        font-weight: 800;
+        font-size: 1.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: var(--text-dark) !important;
+        margin: 0 0.5rem;
+        transition: var(--transition);
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .btn-primary {
+        background: var(--primary-gradient);
+        border: none;
+        border-radius: 25px;
+        padding: 0.6rem 1.8rem;
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      .page-header {
+        background: var(--primary-gradient);
+        padding: 100px 0 80px;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .page-header h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .page-header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        position: relative;
+        z-index: 2;
+      }
+
+      .content-section {
+        padding: 5rem 0;
+      }
+
+      .legal-content {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 3rem;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      }
+
+      .legal-content h2 {
+        font-weight: 800;
+        font-size: 2rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-dark);
+      }
+
+      .legal-content h2:first-child {
+        margin-top: 0;
+      }
+
+      .legal-content h3 {
+        font-weight: 700;
+        font-size: 1.4rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--text-dark);
+      }
+
+      .legal-content p {
+        line-height: 1.8;
+        color: var(--text-muted);
+        margin-bottom: 1.5rem;
+      }
+
+      .legal-content ul,
+      .legal-content ol {
+        line-height: 1.8;
+        color: var(--text-muted);
+        margin-bottom: 1.5rem;
+        padding-left: 2rem;
+      }
+
+      .legal-content ul li,
+      .legal-content ol li {
+        margin-bottom: 0.8rem;
+      }
+
+      .highlight-box {
+        background: linear-gradient(135deg, #e6f0ff 0%, #f0e6ff 100%);
+        border-left: 4px solid var(--primary-color);
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .highlight-box p {
+        margin: 0;
+        color: var(--text-dark);
+        font-weight: 500;
+      }
+
+      .last-updated {
+        background: #f7fafc;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+        font-weight: 600;
+        color: var(--text-muted);
+      }
+
+      .footer {
+        background: #1a202c;
+        color: white;
+        padding: 3rem 0 1.5rem;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      @media (max-width: 768px) {
+        .page-header h1 {
+          font-size: 2.5rem;
+        }
+        .legal-content {
+          padding: 2rem 1.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="../images/vendi-logo.png" alt="" width="80px" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/saved-items" class="nav-link">
+                <i class="far fa-heart me-1"></i>Saved
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/login" class="nav-link">
+                <i class="far fa-user me-1"></i>Login
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/post-ad" class="btn btn-primary ms-2">
+                <i class="fas fa-plus me-2"></i>Post Ad
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+      <div class="container">
+        <h1>Terms of Service</h1>
+        <p>Please read these terms carefully before using Vendi</p>
+      </div>
+    </section>
+
+    <!-- TERMS CONTENT -->
+    <section class="content-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="legal-content">
+              <div class="last-updated">
+                <i class="far fa-calendar-alt me-2"></i>Last Updated: November
+                24, 2025
+              </div>
+
+              <div class="highlight-box">
+                <p>
+                  <i class="fas fa-info-circle me-2"></i>
+                  By accessing and using Vendi, you accept and agree to be bound
+                  by the terms and provisions of this agreement. If you do not
+                  agree to these terms, please do not use our services.
+                </p>
+              </div>
+
+              <h2>1. Acceptance of Terms</h2>
+              <p>
+                Welcome to Vendi. These Terms of Service ("Terms") govern your
+                access to and use of our website, mobile application, and
+                services (collectively, the "Platform"). By creating an account
+                or using our Platform, you agree to comply with these Terms and
+                all applicable laws and regulations.
+              </p>
+
+              <h2>2. User Accounts</h2>
+              <h3>2.1 Account Creation</h3>
+              <p>
+                To access certain features of the Platform, you must create an
+                account. You agree to:
+              </p>
+              <ul>
+                <li>
+                  Provide accurate, current, and complete information during
+                  registration
+                </li>
+                <li>Maintain and promptly update your account information</li>
+                <li>Maintain the security of your password and account</li>
+                <li>
+                  Accept responsibility for all activities that occur under your
+                  account
+                </li>
+                <li>
+                  Notify us immediately of any unauthorized use of your account
+                </li>
+              </ul>
+
+              <h3>2.2 Account Eligibility</h3>
+              <p>
+                You must be at least 18 years old to create an account and use
+                our services. By creating an account, you represent and warrant
+                that you meet this age requirement.
+              </p>
+
+              <h2>3. User Conduct and Prohibited Activities</h2>
+              <p>You agree not to:</p>
+              <ul>
+                <li>
+                  Post false, inaccurate, misleading, or fraudulent content
+                </li>
+                <li>
+                  Violate any local, state, national, or international law
+                </li>
+                <li>
+                  Infringe upon the intellectual property rights of others
+                </li>
+                <li>Harass, abuse, or harm other users</li>
+                <li>Distribute spam, viruses, or any other malicious code</li>
+                <li>Attempt to gain unauthorized access to our systems</li>
+                <li>Use automated systems or bots to access the Platform</li>
+                <li>
+                  Engage in any activity that interferes with the Platform's
+                  operation
+                </li>
+              </ul>
+
+              <h2>4. Listings and Transactions</h2>
+              <h3>4.1 Creating Listings</h3>
+              <p>
+                When creating a listing, you must provide accurate descriptions,
+                fair pricing, and genuine photographs of the items you're
+                selling. You are solely responsible for the content of your
+                listings.
+              </p>
+
+              <h3>4.2 Prohibited Items</h3>
+              <p>
+                You may not list items that are illegal, stolen, counterfeit, or
+                violate any laws or regulations. This includes but is not
+                limited to weapons, drugs, stolen goods, and items that infringe
+                on intellectual property rights.
+              </p>
+
+              <h3>4.3 Transaction Responsibility</h3>
+              <p>
+                Vendi is a platform that connects buyers and sellers. We are not
+                a party to any transaction between users. You are solely
+                responsible for:
+              </p>
+              <ul>
+                <li>Verifying the identity and legitimacy of other users</li>
+                <li>Inspecting items before purchase</li>
+                <li>Ensuring safe payment and delivery methods</li>
+                <li>Resolving disputes with other users</li>
+              </ul>
+
+              <h2>5. Fees and Payments</h2>
+              <p>
+                Basic listing services on Vendi are free. We may charge fees for
+                premium features such as featured listings, promoted ads, or
+                other enhanced services. All fees will be clearly disclosed
+                before you commit to any paid service.
+              </p>
+
+              <h2>6. Intellectual Property</h2>
+              <p>
+                The Platform and its original content, features, and
+                functionality are owned by Vendi and are protected by
+                international copyright, trademark, and other intellectual
+                property laws. You may not copy, modify, distribute, or create
+                derivative works based on our Platform without our express
+                written permission.
+              </p>
+
+              <h2>7. User Content</h2>
+              <p>
+                By posting content on Vendi, you grant us a non-exclusive,
+                worldwide, royalty-free license to use, display, and distribute
+                your content on the Platform. You retain all rights to your
+                content and can remove it at any time.
+              </p>
+
+              <h2>8. Privacy and Data Protection</h2>
+              <p>
+                Your privacy is important to us. Our collection and use of
+                personal information is governed by our
+                <a
+                  href="privacy.html"
+                  style="
+                    color: var(--primary-color);
+                    text-decoration: none;
+                    font-weight: 600;
+                  "
+                  >Privacy Policy</a
+                >. By using the Platform, you consent to our collection and use
+                of your information as described in the Privacy Policy.
+              </p>
+
+              <h2>9. Disclaimers and Limitation of Liability</h2>
+              <h3>9.1 Platform "As Is"</h3>
+              <p>
+                The Platform is provided "as is" and "as available" without
+                warranties of any kind, either express or implied. We do not
+                guarantee that the Platform will be uninterrupted, secure, or
+                error-free.
+              </p>
+
+              <h3>9.2 Limitation of Liability</h3>
+              <p>
+                To the maximum extent permitted by law, Vendi shall not be
+                liable for any indirect, incidental, special, consequential, or
+                punitive damages arising from your use of the Platform or any
+                transactions between users.
+              </p>
+
+              <h2>10. Indemnification</h2>
+              <p>
+                You agree to indemnify and hold Vendi harmless from any claims,
+                damages, losses, liabilities, and expenses (including legal
+                fees) arising from your use of the Platform, your violation of
+                these Terms, or your violation of any rights of another user.
+              </p>
+
+              <h2>11. Termination</h2>
+              <p>
+                We reserve the right to suspend or terminate your account at any
+                time, with or without notice, for any reason, including but not
+                limited to violation of these Terms. Upon termination, your
+                right to use the Platform will immediately cease.
+              </p>
+
+              <h2>12. Modifications to Terms</h2>
+              <p>
+                We reserve the right to modify these Terms at any time. We will
+                notify users of any material changes by posting the new Terms on
+                the Platform and updating the "Last Updated" date. Your
+                continued use of the Platform after such modifications
+                constitutes your acceptance of the updated Terms.
+              </p>
+
+              <h2>13. Governing Law</h2>
+              <p>
+                These Terms shall be governed by and construed in accordance
+                with the laws of the Federal Republic of Nigeria, without regard
+                to its conflict of law provisions.
+              </p>
+
+              <h2>14. Dispute Resolution</h2>
+              <p>
+                Any disputes arising from these Terms or your use of the
+                Platform shall be resolved through good faith negotiations. If
+                negotiations fail, disputes shall be submitted to binding
+                arbitration in Lagos, Nigeria.
+              </p>
+
+              <h2>15. Contact Information</h2>
+              <p>
+                If you have any questions about these Terms, please contact us
+                at:
+              </p>
+              <ul>
+                <li>Email: legal@vendi.ng</li>
+                <li>Phone: +234 801 234 5678</li>
+                <li>Address: 123 Victoria Island, Lagos, Nigeria</li>
+              </ul>
+
+              <div class="highlight-box" style="margin-top: 3rem">
+                <p>
+                  <i class="fas fa-handshake me-2"></i>
+                  Thank you for using Vendi. We're committed to providing a safe
+                  and reliable platform for all users.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <h5 class="footer-title">
+              <img src="../images/vendi-logo.png" alt="" width="80px" />
+            </h5>
+            <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.6">
+              Your trusted marketplace for buying and selling anything. Join
+              thousands of happy users today.
+            </p>
+            <div class="social-links mt-3">
+              <a href="#" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/careers">Careers</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Categories</h5>
+            <ul class="footer-links">
+              <li><a href="/#categories">Vehicles</a></li>
+              <li><a href="/#categories">Electronics</a></li>
+              <li><a href="/#categories">Real Estate</a></li>
+              <li><a href="/#categories">Fashion</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Support</h5>
+            <ul class="footer-links">
+              <li><a href="/support/help">Help Center</a></li>
+              <li><a href="/support/safety">Safety Tips</a></li>
+              <li><a href="/legal/terms">Terms of Service</a></li>
+              <li><a href="/legal/privacy">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Account</h5>
+            <ul class="footer-links">
+              <li><a href="/auth/login">Login</a></li>
+              <li><a href="/auth/register">Register</a></li>
+              <li><a href="/user/my-ads">My Ads</a></li>
+              <li><a href="/user/saved-items">Saved Items</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="mb-0">
+            © 2025 Vendi. All rights reserved. Made with
+            <i class="fas fa-heart" style="color: #f56565"></i> in Nigeria
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

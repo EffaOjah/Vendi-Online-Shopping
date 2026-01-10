@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Product details on Vendi" />
+    <title>iPhone 15 Pro Max 256GB - Vendi</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --primary-color: #667eea;
+        --text-dark: #2d3748;
+        --text-muted: #718096;
+        --border-radius: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        background: #f7fafc;
+        font-family: "Inter", sans-serif;
+        color: var(--text-dark);
+      }
+
+      .navbar {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        padding: 1rem 0;
+      }
+
+      .navbar-brand {
+        font-weight: 800;
+        font-size: 1.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: var(--text-dark) !important;
+        margin: 0 0.5rem;
+        transition: var(--transition);
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .btn-primary {
+        background: var(--primary-gradient);
+        border: none;
+        border-radius: 25px;
+        padding: 0.6rem 1.8rem;
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      .breadcrumb {
+        background: white;
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+        margin: 2rem 0;
+      }
+
+      .breadcrumb-item a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      .product-section {
+        padding: 2rem 0 5rem;
+      }
+
+      .product-gallery {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .main-image {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        border-radius: var(--border-radius);
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .thumbnail-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+
+      .thumbnail {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 12px;
+        cursor: pointer;
+        border: 3px solid transparent;
+        transition: var(--transition);
+      }
+
+      .thumbnail:hover,
+      .thumbnail.active {
+        border-color: var(--primary-color);
+      }
+
+      .product-info {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 2.5rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 100px;
+      }
+
+      .product-title {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+
+      .product-price {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1.5rem;
+      }
+
+      .product-meta {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 2px solid #f7fafc;
+      }
+
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-muted);
+      }
+
+      .meta-item i {
+        color: var(--primary-color);
+      }
+
+      .seller-card {
+        background: #f7fafc;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .seller-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .seller-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--primary-gradient);
+      }
+
+      .seller-name {
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .seller-rating {
+        color: #f6ad55;
+      }
+
+      .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .btn-action {
+        padding: 1rem;
+        border-radius: 12px;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+      }
+
+      .btn-contact {
+        background: var(--primary-gradient);
+        color: white;
+      }
+
+      .btn-contact:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      .btn-call {
+        background: #48bb78;
+        color: white;
+      }
+
+      .btn-call:hover {
+        background: #38a169;
+      }
+
+      .btn-save {
+        background: white;
+        border: 2px solid #e2e8f0;
+        color: var(--text-dark);
+      }
+
+      .btn-save:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .product-details {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 2.5rem;
+        margin-top: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .product-details h3 {
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+      }
+
+      .product-details p {
+        line-height: 1.8;
+        color: var(--text-muted);
+        margin-bottom: 2rem;
+      }
+
+      .specs-table {
+        width: 100%;
+      }
+
+      .specs-table tr {
+        border-bottom: 1px solid #f7fafc;
+      }
+
+      .specs-table td {
+        padding: 1rem 0;
+      }
+
+      .specs-table td:first-child {
+        font-weight: 600;
+        width: 40%;
+      }
+
+      .specs-table td:last-child {
+        color: var(--text-muted);
+      }
+
+      .safety-tips {
+        background: linear-gradient(135deg, #fff5e6 0%, #ffe6e6 100%);
+        border-left: 4px solid #f6ad55;
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .safety-tips h5 {
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #c05621;
+      }
+
+      .safety-tips ul {
+        margin: 0;
+        padding-left: 1.5rem;
+        color: #744210;
+      }
+
+      .safety-tips li {
+        margin-bottom: 0.5rem;
+      }
+
+      .related-products {
+        padding: 3rem 0;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 2rem;
+      }
+
+      .product-card {
+        background: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        transition: var(--transition);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .product-card-body {
+        padding: 1.5rem;
+      }
+
+      .product-card-title {
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+      }
+
+      .product-card-price {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .product-card-location {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        .main-image {
+          height: 300px;
+        }
+        .product-info {
+          position: static;
+        }
+        .thumbnail-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--primary-gradient);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        border: none;
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .back-to-top:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="/images/vendi-logo.png" alt="" width="80px" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/saved-items" class="nav-link">
+                <i class="far fa-heart me-1"></i>Saved
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/login" class="nav-link">
+                <i class="far fa-user me-1"></i>Login
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/post-ad" class="btn btn-primary ms-2">
+                <i class="fas fa-plus me-2"></i>Post Ad
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="container">
+      <nav class="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item">
+            <a href="/product/search">Electronics</a>
+          </li>
+          <li class="breadcrumb-item active">iPhone 15 Pro Max 256GB</li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- PRODUCT SECTION -->
+    <section class="product-section">
+      <div class="container">
+        <div class="row g-4">
+          <!-- GALLERY -->
+          <div class="col-lg-7">
+            <div class="product-gallery">
+              <img
+                src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800"
+                alt="iPhone 15 Pro Max"
+                class="main-image"
+                id="mainImage"
+              />
+              <div class="thumbnail-grid">
+                <img
+                  src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200"
+                  class="thumbnail active"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1592286927505-c7c365e6f0e8?w=200"
+                  class="thumbnail"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1603891128711-11b4b03e0f44?w=200"
+                  class="thumbnail"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=200"
+                  class="thumbnail"
+                  onclick="changeImage(this)"
+                />
+              </div>
+            </div>
+
+            <!-- PRODUCT DETAILS -->
+            <div class="product-details">
+              <h3>Description</h3>
+              <p>
+                Brand new iPhone 15 Pro Max with 256GB storage in Titanium Blue.
+                This is the latest flagship from Apple featuring the powerful
+                A17 Pro chip, advanced camera system with 5x optical zoom, and
+                stunning Super Retina XDR display.
+              </p>
+              <p>
+                The device comes with all original accessories including USB-C
+                charging cable, documentation, and original Apple packaging.
+                Never been used, still sealed in box. Perfect condition with
+                full manufacturer warranty.
+              </p>
+
+              <h3>Specifications</h3>
+              <table class="specs-table">
+                <tr>
+                  <td>Brand</td>
+                  <td>Apple</td>
+                </tr>
+                <tr>
+                  <td>Model</td>
+                  <td>iPhone 15 Pro Max</td>
+                </tr>
+                <tr>
+                  <td>Storage</td>
+                  <td>256GB</td>
+                </tr>
+                <tr>
+                  <td>Color</td>
+                  <td>Titanium Blue</td>
+                </tr>
+                <tr>
+                  <td>Condition</td>
+                  <td>Brand New (Sealed)</td>
+                </tr>
+                <tr>
+                  <td>Warranty</td>
+                  <td>1 Year Apple Warranty</td>
+                </tr>
+                <tr>
+                  <td>Display</td>
+                  <td>6.7" Super Retina XDR</td>
+                </tr>
+                <tr>
+                  <td>Processor</td>
+                  <td>A17 Pro Chip</td>
+                </tr>
+                <tr>
+                  <td>Camera</td>
+                  <td>48MP Main, 12MP Ultra Wide, 12MP Telephoto</td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- SAFETY TIPS -->
+            <div class="safety-tips">
+              <h5><i class="fas fa-shield-alt me-2"></i>Safety Tips</h5>
+              <ul>
+                <li>Meet in a safe, public location</li>
+                <li>Inspect the item thoroughly before payment</li>
+                <li>Never send money before seeing the product</li>
+                <li>Verify the seller's identity and check reviews</li>
+                <li>Report suspicious listings immediately</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PRODUCT INFO -->
+          <div class="col-lg-5">
+            <div class="product-info">
+              <h1 class="product-title">iPhone 15 Pro Max 256GB</h1>
+              <div class="product-price">₦1,250,000</div>
+
+              <div class="product-meta">
+                <div class="meta-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>Victoria Island, Lagos</span>
+                </div>
+                <div class="meta-item">
+                  <i class="far fa-clock"></i>
+                  <span>Posted 2 days ago</span>
+                </div>
+                <div class="meta-item">
+                  <i class="far fa-eye"></i>
+                  <span>342 views</span>
+                </div>
+              </div>
+
+              <!-- SELLER INFO -->
+              <div class="seller-card">
+                <div class="seller-info">
+                  <div class="seller-avatar"></div>
+                  <div>
+                    <div class="seller-name">Adebayo Johnson</div>
+                    <div class="seller-rating">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star-half-alt"></i>
+                      <span
+                        style="color: var(--text-muted); margin-left: 0.5rem"
+                        >4.8 (24 reviews)</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <a
+                  href="/product/seller-profile"
+                  class="btn btn-sm"
+                  style="
+                    background: white;
+                    border: 2px solid #e2e8f0;
+                    border-radius: 8px;
+                    padding: 0.5rem 1rem;
+                    text-decoration: none;
+                    color: var(--text-dark);
+                    font-weight: 600;
+                  "
+                >
+                  View Profile
+                </a>
+              </div>
+
+              <!-- ACTION BUTTONS -->
+              <div class="action-buttons">
+                <a
+                  href="/user/chat
+                "
+                ></a>
+                <button
+                  class="btn-action btn-contact"
+                  onclick="location.assign('/user/chat')"
+                >
+                  <i class="fas fa-comment"></i>
+                  Chat with Seller
+                </button>
+                <button class="btn-action btn-call">
+                  <i class="fas fa-phone"></i>
+                  Show Phone Number
+                </button>
+                <button class="btn-action btn-save">
+                  <i class="far fa-heart"></i>
+                  Save to Wishlist
+                </button>
+                <button
+                  class="btn-action"
+                  style="background: #fed7d7; color: #c53030"
+                >
+                  <i class="fas fa-flag"></i>
+                  Report Listing
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED PRODUCTS -->
+    <section class="related-products" style="background: white">
+      <div class="container">
+        <h2 class="section-title">Similar Listings</h2>
+        <div class="row g-4">
+          <div class="col-md-3">
+            <a href="/product/listing-detail" class="text-decoration-none">
+              <div class="product-card">
+                <img
+                  src="https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=400"
+                  alt="Samsung Galaxy"
+                />
+                <div class="product-card-body">
+                  <h6 class="product-card-title">Samsung Galaxy S24 Ultra</h6>
+                  <div class="product-card-price">₦980,000</div>
+                  <div class="product-card-location">
+                    <i class="fas fa-map-marker-alt me-1"></i>Ikeja, Lagos
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a href="/product/listing-detail" class="text-decoration-none">
+              <div class="product-card">
+                <img
+                  src="https://images.unsplash.com/photo-1603891128711-11b4b03e0f44?w=400"
+                  alt="iPhone 14"
+                />
+                <div class="product-card-body">
+                  <h6 class="product-card-title">iPhone 14 Pro 128GB</h6>
+                  <div class="product-card-price">₦850,000</div>
+                  <div class="product-card-location">
+                    <i class="fas fa-map-marker-alt me-1"></i>Lekki, Lagos
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a href="/product/listing-detail" class="text-decoration-none">
+              <div class="product-card">
+                <img
+                  src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400"
+                  alt="Google Pixel"
+                />
+                <div class="product-card-body">
+                  <h6 class="product-card-title">Google Pixel 8 Pro</h6>
+                  <div class="product-card-price">₦720,000</div>
+                  <div class="product-card-location">
+                    <i class="fas fa-map-marker-alt me-1"></i>Abuja
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a href="/product/listing-detail" class="text-decoration-none">
+              <div class="product-card">
+                <img
+                  src="https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400"
+                  alt="OnePlus"
+                />
+                <div class="product-card-body">
+                  <h6 class="product-card-title">OnePlus 12 5G</h6>
+                  <div class="product-card-price">₦650,000</div>
+                  <div class="product-card-location">
+                    <i class="fas fa-map-marker-alt me-1"></i>Port Harcourt
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button class="back-to-top" id="backToTop" title="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function changeImage(thumbnail) {
+        document.getElementById("mainImage").src = thumbnail.src.replace(
+          "w=200",
+          "w=800"
+        );
+        document
+          .querySelectorAll(".thumbnail")
+          .forEach((t) => t.classList.remove("active"));
+        thumbnail.classList.add("active");
+      }
+
+      document
+        .querySelector(".btn-call")
+        .addEventListener("click", function () {
+          this.innerHTML = '<i class="fas fa-phone me-2"></i>+234 801 234 5678';
+        });
+
+      document
+        .querySelector(".btn-save")
+        .addEventListener("click", function () {
+          const icon = this.querySelector("i");
+          if (icon.classList.contains("far")) {
+            icon.classList.remove("far");
+            icon.classList.add("fas");
+            this.style.borderColor = "var(--primary-color)";
+            this.style.color = "var(--primary-color)";
+          } else {
+            icon.classList.remove("fas");
+            icon.classList.add("far");
+            this.style.borderColor = "#e2e8f0";
+            this.style.color = "var(--text-dark)";
+          }
+        });
+
+      // Back to Top Button
+      const backToTopBtn = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopBtn.classList.add("active");
+        } else {
+          backToTopBtn.classList.remove("active");
+        }
+      });
+
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    </script>
+  </body>
+</html>

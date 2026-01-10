@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Post a new ad on Vendi" />
+    <title>Vendi - Post Ad</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --primary-color: #667eea;
+        --text-dark: #2d3748;
+        --text-muted: #718096;
+        --border-radius: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        background: #f7fafc;
+        font-family: "Inter", sans-serif;
+        color: var(--text-dark);
+      }
+
+      .navbar {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        padding: 1rem 0;
+      }
+
+      .navbar-brand {
+        font-weight: 800;
+        font-size: 1.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: var(--text-dark) !important;
+        margin: 0 0.5rem;
+        transition: var(--transition);
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .btn-primary {
+        background: var(--primary-gradient);
+        border: none;
+        border-radius: 25px;
+        padding: 0.6rem 1.8rem;
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      .post-ad-section {
+        padding: 3rem 0;
+      }
+
+      .form-card {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 2.5rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .form-section-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #f7fafc;
+        color: var(--text-dark);
+      }
+
+      .form-label {
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+      }
+
+      .form-control,
+      .form-select {
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      }
+
+      .image-upload-area {
+        border: 2px dashed #cbd5e0;
+        border-radius: var(--border-radius);
+        padding: 3rem;
+        text-align: center;
+        cursor: pointer;
+        transition: var(--transition);
+        background: #f7fafc;
+      }
+
+      .image-upload-area:hover {
+        border-color: var(--primary-color);
+        background: #ebf4ff;
+      }
+
+      .upload-icon {
+        font-size: 3rem;
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+      }
+
+      .upload-text {
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+
+      .preview-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .preview-item {
+        position: relative;
+        aspect-ratio: 1;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .preview-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .remove-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        cursor: pointer;
+      }
+
+      .tips-card {
+        background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        position: sticky;
+        top: 100px;
+      }
+
+      .tips-card h5 {
+        color: #c53030;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .tips-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .tips-list li {
+        margin-bottom: 0.8rem;
+        display: flex;
+        gap: 0.8rem;
+        color: #742a2a;
+        font-size: 0.95rem;
+      }
+
+      .tips-list li i {
+        margin-top: 0.2rem;
+      }
+
+      .price-input-group {
+        position: relative;
+      }
+
+      .currency-symbol {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+        font-weight: 600;
+      }
+
+      .price-input-group input {
+        padding-left: 2.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .tips-card {
+          margin-top: 2rem;
+          position: static;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="/images/vendi-logo.png" alt="" width="80px" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/my-ads" class="nav-link">My Ads</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/chat" class="nav-link">Messages</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/saved-items" class="nav-link">
+                <i class="far fa-heart me-1"></i>Saved
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                <img
+                  src="https://ui-avatars.com/api/?name=John+Doe&background=random"
+                  class="rounded-circle me-1"
+                  width="32"
+                  height="32"
+                  alt="User"
+                />
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 mt-2"
+              >
+                <li>
+                  <a class="dropdown-item py-2" href="/user/profile"
+                    ><i class="fas fa-user me-2"></i>Profile</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item py-2" href="/user/settings"
+                    ><i class="fas fa-cog me-2"></i>Settings</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item py-2 text-danger" href="/auth/login"
+                    ><i class="fas fa-sign-out-alt me-2"></i>Logout</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="btn btn-primary ms-2">
+                <i class="fas fa-plus me-2"></i>Post Ad
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- POST AD SECTION -->
+    <section class="post-ad-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="form-card">
+              <h2 class="mb-4 fw-bold">Post a New Ad</h2>
+
+              <form action="/user/my-ads">
+                <!-- Basic Information -->
+                <div class="mb-5">
+                  <h5 class="form-section-title">Basic Information</h5>
+
+                  <div class="mb-3">
+                    <label class="form-label">Ad Title</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="e.g. iPhone 15 Pro Max 256GB Titanium Blue"
+                      required
+                    />
+                    <div class="form-text">Keep it short and descriptive.</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Category</label>
+                      <select class="form-select" required>
+                        <option selected disabled>Select Category</option>
+                        <option>Vehicles</option>
+                        <option>Electronics</option>
+                        <option>Real Estate</option>
+                        <option>Fashion</option>
+                        <option>Home & Garden</option>
+                        <option>Services</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Condition</label>
+                      <select class="form-select" required>
+                        <option selected disabled>Select Condition</option>
+                        <option>Brand New</option>
+                        <option>Used - Like New</option>
+                        <option>Used - Good</option>
+                        <option>Used - Fair</option>
+                        <option>For Parts</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Price & Details -->
+                <div class="mb-5">
+                  <h5 class="form-section-title">Price & Details</h5>
+
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Price</label>
+                      <div class="price-input-group">
+                        <span class="currency-symbol">₦</span>
+                        <input
+                          type="number"
+                          class="form-control"
+                          placeholder="0.00"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Negotiable?</label>
+                      <div class="d-flex gap-3 mt-2">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="negotiable"
+                            id="negYes"
+                            checked
+                          />
+                          <label class="form-check-label" for="negYes"
+                            >Yes</label
+                          >
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="negotiable"
+                            id="negNo"
+                          />
+                          <label class="form-check-label" for="negNo">No</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea
+                      class="form-control"
+                      rows="6"
+                      placeholder="Describe your item in detail. Include features, condition, and reason for selling."
+                      required
+                    ></textarea>
+                  </div>
+                </div>
+
+                <!-- Photos -->
+                <div class="mb-5">
+                  <h5 class="form-section-title">Photos</h5>
+                  <p class="text-muted mb-3">
+                    Add up to 10 photos. The first photo will be the cover
+                    image.
+                  </p>
+
+                  <div
+                    class="image-upload-area"
+                    onclick="document.getElementById('fileInput').click()"
+                  >
+                    <input
+                      type="file"
+                      id="fileInput"
+                      hidden
+                      multiple
+                      accept="image/*"
+                    />
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <div class="upload-text">
+                      Click to upload or drag and drop
+                    </div>
+                    <div class="small text-muted mt-2">
+                      JPG, PNG up to 5MB each
+                    </div>
+                  </div>
+
+                  <div class="preview-grid" id="previewGrid">
+                    <!-- Previews will appear here -->
+                  </div>
+                </div>
+
+                <!-- Location & Contact -->
+                <div class="mb-5">
+                  <h5 class="form-section-title">Location & Contact</h5>
+
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">State</label>
+                      <select class="form-select" required>
+                        <option selected disabled>Select State</option>
+                        <option>Lagos</option>
+                        <option>Abuja</option>
+                        <option>Rivers</option>
+                        <option>Oyo</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">City/Area</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="e.g. Ikeja"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      value="+234 801 234 5678"
+                      required
+                    />
+                    <div class="form-check mt-2">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="hidePhone"
+                      />
+                      <label class="form-check-label" for="hidePhone"
+                        >Hide phone number on ad</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-grid gap-2">
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    Post Ad Now
+                  </button>
+                  <button type="button" class="btn btn-light btn-lg text-muted">
+                    Save Draft
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Sidebar Tips -->
+          <div class="col-lg-4">
+            <div class="tips-card">
+              <h5><i class="fas fa-lightbulb me-2"></i>Tips for a good ad</h5>
+              <ul class="tips-list">
+                <li>
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    ><strong>Use a clear title:</strong> Include brand, model,
+                    and key features.</span
+                  >
+                </li>
+                <li>
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    ><strong>Add high-quality photos:</strong> Take photos from
+                    different angles in good lighting.</span
+                  >
+                </li>
+                <li>
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    ><strong>Be honest:</strong> Describe the condition
+                    accurately to build trust.</span
+                  >
+                </li>
+                <li>
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    ><strong>Fair pricing:</strong> Check similar items to set a
+                    competitive price.</span
+                  >
+                </li>
+                <li>
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    ><strong>Verify details:</strong> Double-check your contact
+                    info so buyers can reach you.</span
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="mt-4 text-center">
+              <p class="text-muted small">
+                By posting an ad, you agree to our
+                <a href="/legal/terms">Terms of Service</a> and
+                <a href="/legal/privacy">Privacy Policy</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Simple image preview script
+      document
+        .getElementById("fileInput")
+        .addEventListener("change", function (e) {
+          const grid = document.getElementById("previewGrid");
+
+          for (let file of this.files) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              const div = document.createElement("div");
+              div.className = "preview-item";
+              div.innerHTML = `
+                        <img src="${e.target.result}" alt="Preview">
+                        <button type="button" class="remove-btn" onclick="this.parentElement.remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+              grid.appendChild(div);
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+    </script>
+  </body>
+</html>

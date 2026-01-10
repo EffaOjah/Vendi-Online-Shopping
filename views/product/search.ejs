@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Search results on MarketHub" />
+    <title>Search Results - MarketHub</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --primary-color: #667eea;
+        --text-dark: #2d3748;
+        --text-muted: #718096;
+        --border-radius: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        background: #f7fafc;
+        font-family: "Inter", sans-serif;
+        color: var(--text-dark);
+      }
+
+      .navbar {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        padding: 1rem 0;
+      }
+
+      .navbar-brand {
+        font-weight: 800;
+        font-size: 1.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: var(--text-dark) !important;
+        margin: 0 0.5rem;
+        transition: var(--transition);
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .btn-primary {
+        background: var(--primary-gradient);
+        border: none;
+        border-radius: 25px;
+        padding: 0.6rem 1.8rem;
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      .search-header {
+        background: var(--primary-gradient);
+        padding: 3rem 0 2rem;
+        color: white;
+      }
+
+      .search-box {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .search-box input {
+        border: none;
+        padding: 1rem 1.5rem;
+        border-radius: 50px 0 0 50px;
+        font-size: 1rem;
+      }
+
+      .search-box button {
+        border-radius: 0 50px 50px 0;
+        padding: 1rem 2rem;
+      }
+
+      .search-results {
+        padding: 3rem 0;
+      }
+
+      .results-header {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .results-count {
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+
+      .filter-sidebar {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 100px;
+      }
+
+      .filter-title {
+        font-weight: 800;
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .filter-section {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 2px solid #f7fafc;
+      }
+
+      .filter-section:last-child {
+        border-bottom: none;
+      }
+
+      .filter-section h6 {
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .form-check {
+        margin-bottom: 0.8rem;
+      }
+
+      .form-check-label {
+        color: var(--text-muted);
+      }
+
+      .price-inputs {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .price-inputs input {
+        flex: 1;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 0.5rem;
+      }
+
+      .listing-card {
+        background: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        transition: var(--transition);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        margin-bottom: 1.5rem;
+        display: flex;
+      }
+
+      .listing-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .listing-image {
+        width: 250px;
+        height: 200px;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .listing-content {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .listing-title {
+        font-weight: 700;
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+        color: var(--text-dark);
+      }
+
+      .listing-price {
+        font-size: 1.8rem;
+        font-weight: 800;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+      }
+
+      .listing-description {
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+
+      .listing-meta {
+        display: flex;
+        gap: 2rem;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-top: auto;
+      }
+
+      .listing-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .wishlist-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: white;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .wishlist-btn:hover {
+        transform: scale(1.1);
+      }
+
+      .wishlist-btn i {
+        color: #e53e3e;
+      }
+
+      .pagination {
+        margin-top: 3rem;
+      }
+
+      @media (max-width: 768px) {
+        .listing-card {
+          flex-direction: column;
+        }
+        .listing-image {
+          width: 100%;
+          height: 200px;
+        }
+        .filter-sidebar {
+          position: static;
+          margin-bottom: 2rem;
+        }
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--primary-gradient);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        border: none;
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .back-to-top:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <i class="fas fa-store me-2"></i>MarketHub
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/login" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/register" class="btn btn-primary ms-2">
+                <i class="fas fa-plus me-2"></i>Post Ad
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- SEARCH HEADER -->
+    <section class="search-header">
+      <div class="container">
+        <div class="search-box">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search for anything..."
+              value="iPhone"
+            />
+            <button class="btn btn-dark">
+              <i class="fas fa-search me-2"></i>Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEARCH RESULTS -->
+    <section class="search-results">
+      <div class="container">
+        <div class="row">
+          <!-- FILTERS -->
+          <div class="col-lg-3">
+            <div class="filter-sidebar">
+              <h5 class="filter-title">Filters</h5>
+
+              <div class="filter-section">
+                <h6>Category</h6>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="cat1"
+                    checked
+                  />
+                  <label class="form-check-label" for="cat1"
+                    >Electronics (45)</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="cat2" />
+                  <label class="form-check-label" for="cat2"
+                    >Mobile Phones (32)</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="cat3" />
+                  <label class="form-check-label" for="cat3"
+                    >Computers (13)</label
+                  >
+                </div>
+              </div>
+
+              <div class="filter-section">
+                <h6>Price Range</h6>
+                <div class="price-inputs">
+                  <input type="number" placeholder="Min" />
+                  <span>-</span>
+                  <input type="number" placeholder="Max" />
+                </div>
+              </div>
+
+              <div class="filter-section">
+                <h6>Condition</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="cond1" />
+                  <label class="form-check-label" for="cond1">Brand New</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="cond2" />
+                  <label class="form-check-label" for="cond2">Used</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="cond3" />
+                  <label class="form-check-label" for="cond3"
+                    >Refurbished</label
+                  >
+                </div>
+              </div>
+
+              <div class="filter-section">
+                <h6>Location</h6>
+                <select class="form-select">
+                  <option>All Locations</option>
+                  <option>Lagos</option>
+                  <option>Abuja</option>
+                  <option>Port Harcourt</option>
+                  <option>Ibadan</option>
+                </select>
+              </div>
+
+              <button class="btn btn-primary w-100">Apply Filters</button>
+            </div>
+          </div>
+
+          <!-- RESULTS -->
+          <div class="col-lg-9">
+            <div class="results-header">
+              <div class="results-count">45 results for "iPhone"</div>
+              <select class="form-select" style="width: auto">
+                <option>Sort by: Relevance</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest First</option>
+                <option>Oldest First</option>
+              </select>
+            </div>
+
+            <!-- LISTING 1 -->
+            <a href="/product/listing-detail" class="text-decoration-none">
+              <div class="listing-card">
+                <div style="position: relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400"
+                    alt="iPhone"
+                    class="listing-image"
+                  />
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                </div>
+                <div class="listing-content">
+                  <h3 class="listing-title">iPhone 15 Pro Max 256GB</h3>
+                  <div class="listing-price">₦1,250,000</div>
+                  <p class="listing-description">
+                    Brand new iPhone 15 Pro Max with 256GB storage in Titanium
+                    Blue. Comes with all original accessories and full warranty.
+                  </p>
+                  <div class="listing-meta">
+                    <span
+                      ><i class="fas fa-map-marker-alt"></i>Victoria Island,
+                      Lagos</span
+                    >
+                    <span><i class="far fa-clock"></i>2 days ago</span>
+                    <span><i class="far fa-eye"></i>342 views</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <!-- LISTING 2 -->
+            <a href="/product/listing-detail" class="text-decoration-none">
+              <div class="listing-card">
+                <div style="position: relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1603891128711-11b4b03e0f44?w=400"
+                    alt="iPhone"
+                    class="listing-image"
+                  />
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                </div>
+                <div class="listing-content">
+                  <h3 class="listing-title">iPhone 14 Pro 128GB</h3>
+                  <div class="listing-price">₦850,000</div>
+                  <p class="listing-description">
+                    Excellent condition iPhone 14 Pro. Used for 6 months, no
+                    scratches or dents. Battery health at 98%.
+                  </p>
+                  <div class="listing-meta">
+                    <span
+                      ><i class="fas fa-map-marker-alt"></i>Lekki, Lagos</span
+                    >
+                    <span><i class="far fa-clock"></i>5 days ago</span>
+                    <span><i class="far fa-eye"></i>567 views</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <!-- LISTING 3 -->
+            <a href="/product/listing-detail" class="text-decoration-none">
+              <div class="listing-card">
+                <div style="position: relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1592286927505-c7c365e6f0e8?w=400"
+                    alt="iPhone"
+                    class="listing-image"
+                  />
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                </div>
+                <div class="listing-content">
+                  <h3 class="listing-title">iPhone 13 256GB</h3>
+                  <div class="listing-price">₦620,000</div>
+                  <p class="listing-description">
+                    iPhone 13 in midnight black. Perfect working condition with
+                    original charger and case included.
+                  </p>
+                  <div class="listing-meta">
+                    <span
+                      ><i class="fas fa-map-marker-alt"></i>Ikeja, Lagos</span
+                    >
+                    <span><i class="far fa-clock"></i>1 week ago</span>
+                    <span><i class="far fa-eye"></i>234 views</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <!-- LISTING 4 -->
+            <a href="/product/listing-detail" class="text-decoration-none">
+              <div class="listing-card">
+                <div style="position: relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400"
+                    alt="iPhone"
+                    class="listing-image"
+                  />
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                </div>
+                <div class="listing-content">
+                  <h3 class="listing-title">iPhone 12 Pro 512GB</h3>
+                  <div class="listing-price">₦550,000</div>
+                  <p class="listing-description">
+                    iPhone 12 Pro with large 512GB storage. Pacific Blue color.
+                    Well maintained with screen protector.
+                  </p>
+                  <div class="listing-meta">
+                    <span
+                      ><i class="fas fa-map-marker-alt"></i>Wuse 2, Abuja</span
+                    >
+                    <span><i class="far fa-clock"></i>3 days ago</span>
+                    <span><i class="far fa-eye"></i>189 views</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <!-- PAGINATION -->
+            <nav class="pagination justify-content-center">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#"
+                    ><i class="fas fa-chevron-left"></i
+                  ></a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#"
+                    ><i class="fas fa-chevron-right"></i
+                  ></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button class="back-to-top" id="backToTop" title="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.querySelectorAll(".wishlist-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const icon = this.querySelector("i");
+          if (icon.classList.contains("far")) {
+            icon.classList.remove("far");
+            icon.classList.add("fas");
+          } else {
+            icon.classList.remove("fas");
+            icon.classList.add("far");
+          }
+        });
+      });
+
+      // Back to Top Button
+      const backToTopBtn = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopBtn.classList.add("active");
+        } else {
+          backToTopBtn.classList.remove("active");
+        }
+      });
+
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    </script>
+  </body>
+</html>
