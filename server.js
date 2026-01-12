@@ -16,6 +16,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Cookie parser for remember me functionality
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+// Rate limiting
+const { apiLimiter } = require('./middleware/rateLimiter');
+// app.use('/api/', apiLimiter); // Apply to API routes if they exist
+// Or apply globally if desired:
+app.use(apiLimiter);
+
 // Session configuration
 const sessionMiddleware = require('./config/session');
 const flash = require('connect-flash');

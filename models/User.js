@@ -1,5 +1,6 @@
 const db = require('./db');
 const { hashPassword, comparePassword, generateResetToken } = require('../utils/passwordUtils');
+const { generateRememberToken, hashToken, compareToken, getTokenExpiration } = require('../utils/tokenUtils');
 
 class User {
     /**
@@ -201,6 +202,104 @@ class User {
             );
 
             return true;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    /**
+     * Create a remember token for persistent login
+     * @param {number} userId - User ID
+     * @returns {Promise<Object>} Object containing selector and token
+     */
+    static async createRememberToken(userId) {
+        try {
+            const { selector, token } = generateRememberToken();
+            const tokenHash = await hashToken(token);
+            const expiresAt = getTokenExpiration(30); // 30 days
+
+            await db.query(
+                'INSERT INTO remember_tokens (user_id, selector, token_hash, expires_at) VALUES (?, ?, ?, ?)',
+                [userId, selector, tokenHash, expiresAt]
+            );
+
+            return { selector, token };
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    /**
+     * Find user by remember token
+     * @param {string} selector - Token selector
+     * @param {string} token - Plain text token
+     * @returns {Promise<Object|null>} User object if valid, null otherwise
+     */
+    static async findByRememberToken(selector, token) {
+        try {
+            const [rows] = await db.query(
+                `SELECT rt.*, u.id as user_id, u.full_name, u.email, u.phone, u.is_verified, u.is_active
+                 FROM remember_tokens rt
+                 JOIN users u ON rt.user_id = u.id
+                 WHERE rt.selector = ? AND rt.expires_at > NOW() AND u.is_active = TRUE`,
+                [selector]
+            );
+
+            if (rows.length === 0) {
+                return null;
+            }
+
+            const tokenData = rows[0];
+
+            // Verify token
+            const isValid = await compareToken(token, tokenData.token_hash);
+            if (!isValid) {
+                return null;
+            }
+
+            // Return user data
+            return {
+                id: tokenData.user_id,
+                full_name: tokenData.full_name,
+                email: tokenData.email,
+                phone: tokenData.phone,
+                is_verified: tokenData.is_verified,
+                is_active: tokenData.is_active
+            };
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    /**
+     * Delete a specific remember token
+     * @param {string} selector - Token selector
+     * @returns {Promise<boolean>} Success status
+     */
+    static async deleteRememberToken(selector) {
+        try {
+            const [result] = await db.query(
+                'DELETE FROM remember_tokens WHERE selector = ?',
+                [selector]
+            );
+            return result.affectedRows > 0;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    /**
+     * Delete all remember tokens for a user
+     * @param {number} userId - User ID
+     * @returns {Promise<boolean>} Success status
+     */
+    static async deleteAllRememberTokens(userId) {
+        try {
+            const [result] = await db.query(
+                'DELETE FROM remember_tokens WHERE user_id = ?',
+                [userId]
+            );
+            return result.affectedRows >= 0;
         } catch (error) {
             throw error;
         }

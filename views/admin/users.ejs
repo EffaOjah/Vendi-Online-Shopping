@@ -125,11 +125,25 @@
         gap: 1rem;
       }
 
+      /* User Avatar */
       .user-avatar {
         width: 40px;
         height: 40px;
+        background-color: #48bb78;
+        color: white;
         border-radius: 50%;
-        object-fit: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .user-avatar:hover {
+        opacity: 0.9;
+        transform: scale(1.05);
       }
 
       /* Main Content */
@@ -397,11 +411,13 @@
 
       <div class="sidebar-footer">
         <div class="user-profile">
-          <img
-            src="https://ui-avatars.com/api/?name=Admin+User&background=random"
-            class="user-avatar"
-            alt="Admin"
-          />
+          <% let initials = "AV"; if (locals.user && locals.user.full_name) {
+          const names = locals.user.full_name.trim().split(/\s+/); initials =
+          names.length > 1 ? (names[0][0] + names[names.length -
+          1][0]).toUpperCase() : names[0].substring(0, 2).toUpperCase(); } else
+          if (locals.user && locals.user.username) { initials =
+          locals.user.username.substring(0, 2).toUpperCase(); } %>
+          <div class="user-avatar"><%= initials %></div>
           <div>
             <div class="fw-bold">Admin User</div>
             <small class="text-muted">Super Admin</small>

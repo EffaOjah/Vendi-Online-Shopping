@@ -8,7 +8,7 @@ exports.getLoginPage = (req, res) => {
 
 // POST /auth/login
 exports.postLogin = async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password, remember } = req.body;
 
     try {
         // Validate input
@@ -34,6 +34,24 @@ exports.postLogin = async (req, res) => {
         req.session.userId = user.id;
         req.session.userEmail = user.email;
         req.session.userName = user.full_name;
+
+        // Handle "Remember Me" functionality
+        if (remember === 'true') {
+            try {
+                const { selector, token } = await User.createRememberToken(user.id);
+
+                // Set remember cookie (30 days)
+                res.cookie('vendi_remember', `${selector}:${token}`, {
+                    maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV === 'production',
+                    sameSite: 'lax'
+                });
+            } catch (error) {
+                console.error('Error creating remember token:', error);
+                // Continue with login even if remember token fails
+            }
+        }
 
         req.flash('success', 'Welcome back, ' + user.full_name + '!');
         res.redirect('/user/dashboard');
@@ -104,7 +122,23 @@ exports.postRegister = async (req, res) => {
 };
 
 // GET /auth/logout
-exports.logout = (req, res) => {
+exports.logout = async (req, res) => {
+    // Clear remember token if it exists
+    const rememberCookie = req.cookies.vendi_remember;
+
+    if (rememberCookie) {
+        try {
+            const [selector] = rememberCookie.split(':');
+            await User.deleteRememberToken(selector);
+        } catch (error) {
+            console.error('Error deleting remember token:', error);
+        }
+
+        // Clear the cookie
+        res.clearCookie('vendi_remember');
+    }
+
+    // Destroy session
     req.session.destroy((err) => {
         if (err) {
             console.error('Logout error:', err);
