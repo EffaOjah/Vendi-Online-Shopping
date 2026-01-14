@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Search results on Vendi" />
+    <title>Vendi - All Listings</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --primary-color: #667eea;
+        --text-dark: #2d3748;
+        --text-muted: #718096;
+        --border-radius: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        background: #f7fafc;
+        font-family: "Inter", sans-serif;
+        color: var(--text-dark);
+      }
+
+      /* ========== NAVBAR ========== */
+      .navbar {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.98) !important;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+        padding: 0.75rem 0;
+        transition: var(--transition);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .navbar-brand {
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: #4a5568 !important;
+        margin: 0 0.75rem;
+        transition: var(--transition);
+        font-size: 0.9rem;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      /* User Avatar */
+      .user-avatar {
+        width: 35px;
+        height: 35px;
+        background-color: #48bb78;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .user-avatar:hover {
+        opacity: 0.9;
+        transform: scale(1.05);
+      }
+
+      /* Custom Dropdown Styling */
+      .navbar .dropdown-toggle::after {
+        display: inline-block;
+        margin-left: 0.4rem;
+        vertical-align: 0.2rem;
+        content: "";
+        border-top: 0.35em solid;
+        border-right: 0.3em solid transparent;
+        border-bottom: 0;
+        border-left: 0.3em solid transparent;
+        color: #718096;
+      }
+
+      .navbar .dropdown-menu {
+        border: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        padding: 0.5rem;
+        min-width: 180px;
+        margin-top: 15px;
+      }
+
+      .navbar .dropdown-item {
+        border-radius: 8px;
+        padding: 0.6rem 1rem;
+        color: #4a5568;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .navbar .dropdown-item:hover {
+        background-color: #f7fafc;
+        color: var(--primary-color);
+      }
+
+      .navbar .dropdown-item i {
+        font-size: 1rem;
+        width: 20px;
+        text-align: center;
+      }
+
+      .navbar .dropdown-item.text-danger {
+        color: #e53e3e !important;
+      }
+
+      .navbar .dropdown-item.text-danger:hover {
+        background-color: #fff5f5;
+      }
+
+      .navbar .dropdown-divider {
+        margin: 0.5rem 0;
+        border-top: 1px solid #edf2f7;
+      }
+
+      .btn-post-ad {
+        background: var(--primary-gradient);
+        color: white !important;
+        border: none;
+        border-radius: 50px;
+        padding: 0.5rem 1.5rem;
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: var(--transition);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-post-ad:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      .search-header {
+        background: var(--primary-gradient);
+        padding: 3rem 0 2rem;
+        color: white;
+      }
+
+      .search-box {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .search-box input {
+        border: none;
+        padding: 1rem 1.5rem;
+        border-radius: 50px 0 0 50px;
+        font-size: 1rem;
+      }
+
+      .search-box button {
+        border-radius: 0 50px 50px 0;
+        padding: 1rem 2rem;
+      }
+
+      .search-results {
+        padding: 3rem 0;
+      }
+
+      .results-header {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .results-count {
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+
+      .filter-sidebar {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 100px;
+      }
+
+      .filter-title {
+        font-weight: 800;
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .filter-section {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 2px solid #f7fafc;
+      }
+
+      .filter-section:last-child {
+        border-bottom: none;
+      }
+
+      .filter-section h6 {
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .category-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #f0f0f0;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .category-item:hover {
+        background-color: #f9f9f9;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 8px;
+        color: var(--primary-color);
+      }
+      .cat-icon-wrapper {
+        width: 40px;
+        height: 40px;
+        background: #eef2ff;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+        font-size: 1.2rem;
+      }
+      .cat-info {
+        flex: 1;
+        margin-left: 1rem;
+      }
+      .cat-name {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--text-dark);
+        display: block;
+      }
+      .cat-count {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .listing-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: var(--transition);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        border: 1px solid transparent;
+      }
+
+      .listing-card:hover {
+        border-color: #48bb78; /* Green border on hover */
+        box-shadow: 0 4px 12px rgba(72, 187, 120, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .listing-image-wrapper {
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+      }
+
+      .listing-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .badge-verified {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #48bb78;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .listing-content {
+        padding: 1rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .listing-price {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: #48bb78; /* Green Price */
+        margin-bottom: 0.3rem;
+        background: none;
+        -webkit-text-fill-color: initial;
+      }
+
+      .listing-title {
+        font-weight: 500;
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+        color: #2d3748;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .listing-location {
+        color: #a0aec0;
+        font-size: 0.8rem;
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .listing-tags {
+        margin-top: auto;
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .listing-tag {
+        background: #edf2f7;
+        color: #718096;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .wishlist-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: white;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .wishlist-btn:hover {
+        transform: scale(1.1);
+      }
+
+      .wishlist-btn i {
+        color: #e53e3e;
+      }
+
+      .pagination {
+        margin-top: 3rem;
+      }
+
+      @media (max-width: 768px) {
+        .listing-image {
+          height: 150px;
+        }
+        .listing-content {
+          padding: 1rem;
+        }
+        .listing-title {
+          font-size: 1rem;
+        }
+        .listing-price {
+          font-size: 1.2rem;
+        }
+        .listing-description {
+          display: none;
+        }
+        .listing-meta {
+          gap: 0.5rem;
+          font-size: 0.8rem;
+          flex-direction: column;
+        }
+        .filter-sidebar {
+          position: static;
+          margin-bottom: 2rem;
+        }
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--primary-gradient);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        border: none;
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .back-to-top:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/home">
+          <img src="/images/vendi-logo.png" alt="" width="80px" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a href="/home" class="nav-link">Home</a>
+            </li>
+            <% if (locals.isAuthenticated) { %>
+            <li class="nav-item">
+              <a href="/user/my-ads" class="nav-link">My Ads</a>
+            </li>
+            <li class="nav-item">
+              <a href="/user/chat" class="nav-link">Messages</a>
+            </li>
+            <% } else { %>
+            <li class="nav-item">
+              <a href="/about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact" class="nav-link">Contact</a>
+            </li>
+            <% } %>
+            <li class="nav-item">
+              <a href="/user/saved-items" class="nav-link">
+                <i class="far fa-heart me-1"></i>Saved
+              </a>
+            </li>
+
+            <% if (locals.isAuthenticated) { %> <% let initials = "U"; if
+            (locals.user && locals.user.full_name) { const names =
+            locals.user.full_name.trim().split(/\s+/); initials = names.length >
+            1 ? (names[0][0] + names[names.length - 1][0]).toUpperCase() :
+            names[0].substring(0, 2).toUpperCase(); } %>
+            <li class="nav-item dropdown ms-2">
+              <a
+                class="nav-link dropdown-toggle d-flex align-items-center p-0"
+                href="#"
+                id="userDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div class="user-avatar"><%= initials %></div>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="userDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="/user/profile">
+                    <i class="fas fa-user"></i>Profile
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/user/settings">
+                    <i class="fas fa-cog"></i>Settings
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item text-danger" href="/auth/logout">
+                    <i class="fas fa-sign-out-alt"></i>Logout
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <% } else { %>
+            <li class="nav-item">
+              <a href="/auth/login" class="nav-link">Login</a>
+            </li>
+            <% } %>
+
+            <li class="nav-item ms-3">
+              <a href="/user/post-ad" class="btn btn-post-ad">
+                <i class="fas fa-plus"></i>Post Ad
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- SEARCH HEADER -->
+    <section class="search-header">
+      <div class="container">
+        <div class="search-box">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search for anything..."
+              value=""
+            />
+            <button class="btn btn-dark">
+              <i class="fas fa-search me-2"></i>Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEARCH RESULTS -->
+    <section class="search-results">
+      <div class="container">
+        <div class="row">
+          <!-- FILTERS -->
+          <div class="col-lg-3">
+            <div class="filter-sidebar">
+              <h5 class="filter-title">Filters</h5>
+
+              <div class="d-flex flex-column gap-1">
+                <div class="category-item">
+                  <div class="cat-icon-wrapper">
+                    <i class="fas fa-car-side"></i>
+                  </div>
+                  <div class="cat-info">
+                    <span class="cat-name">Vehicles</span>
+                    <span class="cat-count">288,572 ads</span>
+                  </div>
+                  <i
+                    class="fas fa-chevron-right text-muted"
+                    style="font-size: 0.8rem"
+                  ></i>
+                </div>
+
+                <div class="category-item">
+                  <div class="cat-icon-wrapper">
+                    <i class="fas fa-home"></i>
+                  </div>
+                  <div class="cat-info">
+                    <span class="cat-name">Property</span>
+                    <span class="cat-count">103,023 ads</span>
+                  </div>
+                  <i
+                    class="fas fa-chevron-right text-muted"
+                    style="font-size: 0.8rem"
+                  ></i>
+                </div>
+
+                <div class="category-item">
+                  <div class="cat-icon-wrapper">
+                    <i class="fas fa-mobile-alt"></i>
+                  </div>
+                  <div class="cat-info">
+                    <span class="cat-name">Mobile Phones</span>
+                    <span class="cat-count">82,726 ads</span>
+                  </div>
+                  <i
+                    class="fas fa-chevron-right text-muted"
+                    style="font-size: 0.8rem"
+                  ></i>
+                </div>
+
+                <div class="category-item">
+                  <div class="cat-icon-wrapper">
+                    <i class="fas fa-laptop"></i>
+                  </div>
+                  <div class="cat-info">
+                    <span class="cat-name">Electronics</span>
+                    <span class="cat-count">242,435 ads</span>
+                  </div>
+                  <i
+                    class="fas fa-chevron-right text-muted"
+                    style="font-size: 0.8rem"
+                  ></i>
+                </div>
+
+                <div class="category-item">
+                  <div class="cat-icon-wrapper">
+                    <i class="fas fa-couch"></i>
+                  </div>
+                  <div class="cat-info">
+                    <span class="cat-name">Home & Furniture</span>
+                    <span class="cat-count">500,419 ads</span>
+                  </div>
+                  <i
+                    class="fas fa-chevron-right text-muted"
+                    style="font-size: 0.8rem"
+                  ></i>
+                </div>
+
+                <div class="category-item">
+                  <div class="cat-icon-wrapper">
+                    <i class="fas fa-tshirt"></i>
+                  </div>
+                  <div class="cat-info">
+                    <span class="cat-name">Fashion</span>
+                    <span class="cat-count">132,102 ads</span>
+                  </div>
+                  <i
+                    class="fas fa-chevron-right text-muted"
+                    style="font-size: 0.8rem"
+                  ></i>
+                </div>
+
+                <div class="category-item">
+                  <div class="cat-icon-wrapper">
+                    <i class="fas fa-spa"></i>
+                  </div>
+                  <div class="cat-info">
+                    <span class="cat-name">Beauty</span>
+                    <span class="cat-count">66,579 ads</span>
+                  </div>
+                  <i
+                    class="fas fa-chevron-right text-muted"
+                    style="font-size: 0.8rem"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RESULTS -->
+          <div class="col-lg-9">
+            <div class="results-header">
+              <% if (locals.searchQuery && searchQuery.length > 0) { %>
+              <div class="results-count">Showing 1-12 of 145 results</div>
+              <% } else { %>
+              <div></div>
+              <% } %>
+              <select class="form-select" style="width: auto">
+                <option>Sort by: Relevance</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest First</option>
+                <option>Oldest First</option>
+              </select>
+            </div>
+
+            <div class="row g-4 mb-5">
+              <!-- LISTING 1: Agriculture -->
+              <div class="col-6 col-md-6 col-lg-3">
+                <a
+                  href="/product/listing-detail"
+                  class="text-decoration-none h-100"
+                >
+                  <div class="listing-card">
+                    <div class="listing-image-wrapper">
+                      <img
+                        src="https://images.unsplash.com/photo-1595246140625-573b715d11d3?q=80&w=400"
+                        alt="Agriculture"
+                        class="listing-image"
+                      />
+                      <span class="badge-verified">
+                        <i class="fas fa-user-check"></i> Verified ID
+                      </span>
+                    </div>
+                    <div class="listing-content">
+                      <div class="listing-price">₦15,000</div>
+                      <h3 class="listing-title">Fresh Tomatoes (Basket)</h3>
+                      <div class="listing-location">
+                        <i class="fas fa-map-marker-alt"></i> Ogun, Abeokuta
+                      </div>
+                      <div class="listing-tags">
+                        <span class="listing-tag">Fresh</span>
+                        <span class="listing-tag">Organic</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <!-- LISTING 2: Real Estate -->
+              <div class="col-6 col-md-6 col-lg-3">
+                <a
+                  href="/product/listing-detail"
+                  class="text-decoration-none h-100"
+                >
+                  <div class="listing-card">
+                    <div class="listing-image-wrapper">
+                      <img
+                        src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=400"
+                        alt="Real Estate"
+                        class="listing-image"
+                      />
+                      <span class="badge-verified">
+                        <i class="fas fa-user-check"></i> Verified ID
+                      </span>
+                    </div>
+                    <div class="listing-content">
+                      <div class="listing-price">₦2,500,000/yr</div>
+                      <h3 class="listing-title">
+                        2 Bed Apartment in Secure Estate
+                      </h3>
+                      <div class="listing-location">
+                        <i class="fas fa-map-marker-alt"></i> Lagos, Lekki Phase
+                        1
+                      </div>
+                      <div class="listing-tags">
+                        <span class="listing-tag">Serviced</span>
+                        <span class="listing-tag">New</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <!-- LISTING 3: Electronics -->
+              <div class="col-6 col-md-6 col-lg-3">
+                <a
+                  href="/product/listing-detail"
+                  class="text-decoration-none h-100"
+                >
+                  <div class="listing-card">
+                    <div class="listing-image-wrapper">
+                      <img
+                        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400"
+                        alt="iPhone"
+                        class="listing-image"
+                      />
+                      <span class="badge-verified">
+                        <i class="fas fa-user-check"></i> Verified ID
+                      </span>
+                    </div>
+                    <div class="listing-content">
+                      <div class="listing-price">₦1,250,000</div>
+                      <h3 class="listing-title">
+                        iPhone 15 Pro Max Titanium Blue 256GB
+                      </h3>
+                      <div class="listing-location">
+                        <i class="fas fa-map-marker-alt"></i> Lagos, Ikeja
+                      </div>
+                      <div class="listing-tags">
+                        <span class="listing-tag">Brand New</span>
+                        <span class="listing-tag">Warranty</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <!-- LISTING 4: Other (e.g., Vehicle/Fashion) -->
+              <div class="col-6 col-md-6 col-lg-3">
+                <a
+                  href="/product/listing-detail"
+                  class="text-decoration-none h-100"
+                >
+                  <div class="listing-card">
+                    <div class="listing-image-wrapper">
+                      <img
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=400"
+                        alt="Fashion"
+                        class="listing-image"
+                      />
+                      <span class="badge-verified">
+                        <i class="fas fa-user-check"></i> Verified ID
+                      </span>
+                    </div>
+                    <div class="listing-content">
+                      <div class="listing-price">₦45,000</div>
+                      <h3 class="listing-title">
+                        Nike Air Max 270 Original Sneakers
+                      </h3>
+                      <div class="listing-location">
+                        <i class="fas fa-map-marker-alt"></i> Abuja, Wuse
+                      </div>
+                      <div class="listing-tags">
+                        <span class="listing-tag">Size 42</span>
+                        <span class="listing-tag">Original</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- LOADING SPINNER -->
+            <div id="loading-spinner" class="text-center py-4 d-none">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+
+            <!-- END OF RESULTS MARKER -->
+            <div id="end-of-results" style="height: 10px"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button class="back-to-top" id="backToTop" title="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Wishlist functionality (delegated for dynamic content)
+      document.addEventListener("click", function (e) {
+        if (e.target.closest(".wishlist-btn")) {
+          const btn = e.target.closest(".wishlist-btn");
+          const icon = btn.querySelector("i");
+          if (icon.classList.contains("far")) {
+            icon.classList.remove("far");
+            icon.classList.add("fas");
+          } else {
+            icon.classList.remove("fas");
+            icon.classList.add("far");
+          }
+        }
+      });
+
+      // Back to Top Button
+      const backToTopBtn = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopBtn.classList.add("active");
+        } else {
+          backToTopBtn.classList.remove("active");
+        }
+      });
+
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Infinite Scroll Logic
+      const listingsContainer = document.querySelector(".row.g-4");
+      const loadingSpinner = document.getElementById("loading-spinner");
+      const endOfResults = document.getElementById("end-of-results");
+
+      // Placeholder data to simulate fetching new listings
+      const placeholderData = [
+        {
+          title: "Fresh Tomatoes (Basket)",
+          price: "₦15,000",
+          desc: "Premium quality, farm-fresh tomatoes harvested today. Bulk orders available.",
+          location: "Ogun",
+          time: "2h ago",
+          img: "https://images.unsplash.com/photo-1595246140625-573b715d11d3?q=80&w=400",
+          cat: "Agriculture",
+        },
+        {
+          title: "2 Bed Apartment",
+          price: "₦2,500,000/yr",
+          desc: "Modern 2-bedroom apartment in a secure estate. Serviced with 24/7 power.",
+          location: "Lekki",
+          time: "1d ago",
+          img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=400",
+          cat: "Real Estate",
+        },
+        {
+          title: "iPhone 15 Pro Max",
+          price: "₦1,250,000",
+          desc: "Titanium Blue, 256GB storage. Brand new with warranty.",
+          location: "Ikeja",
+          time: "2d ago",
+          img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400",
+          cat: "Electronics",
+        },
+        {
+          title: "Nike Air Max 270",
+          price: "₦45,000",
+          desc: "Original Nike sneakers. Size 42. Available in multiple colors.",
+          location: "Abuja",
+          time: "4h ago",
+          img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=400",
+          cat: "Fashion",
+        },
+      ];
+
+      let isLoading = false;
+
+      const loadMoreListings = () => {
+        if (isLoading) return;
+        isLoading = true;
+        loadingSpinner.classList.remove("d-none"); // Show spinner
+
+        // Simulate network delay
+        setTimeout(() => {
+          // Append 4 new items
+          placeholderData.forEach((item) => {
+            const newItem = document.createElement("div");
+            newItem.className = "col-6 col-md-6 col-lg-3";
+            newItem.innerHTML = `
+                <a href="/product/listing-detail" class="text-decoration-none h-100">
+                  <div class="listing-card">
+                    <div class="listing-image-wrapper">
+                      <img
+                        src="${item.img}"
+                        alt="${item.cat}"
+                        class="listing-image"
+                      />
+                      <span class="badge-verified">
+                        <i class="fas fa-user-check"></i> Verified ID
+                      </span>
+                    </div>
+                    <div class="listing-content">
+                      <div class="listing-price">${item.price}</div>
+                      <h3 class="listing-title">${item.title}</h3>
+                      <div class="listing-location">
+                        <i class="fas fa-map-marker-alt"></i> ${item.location}
+                      </div>
+                      <div class="listing-tags">
+                        <span class="listing-tag">${item.cat}</span>
+                         <span class="listing-tag">Verified</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              `;
+            listingsContainer.appendChild(newItem);
+          });
+
+          isLoading = false;
+          loadingSpinner.classList.add("d-none"); // Hide spinner
+        }, 1500); // 1.5s delay
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            loadMoreListings();
+          }
+        },
+        { rootMargin: "100px" }
+      );
+
+      observer.observe(endOfResults);
+    </script>
+  </body>
+</html>
